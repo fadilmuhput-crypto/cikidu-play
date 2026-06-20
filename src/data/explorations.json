@@ -1,0 +1,78 @@
+[
+  {
+    "id": "play-1",
+    "title": "Sensory Bin Beras Warna",
+    "description": "Kotak sensori berisi beras yang diwarnai dengan pewarna makanan. Anak bisa menyendok, menuang, dan mencari mainan kecil di dalamnya.",
+    "benefits": ["Melatih motorik halus", "Merangsang indra peraba", "Mengenal konsep volume"],
+    "ageRange": "1-3 tahun",
+    "developmentGoals": ["motorik", "sensorik"],
+    "activityType": "Sensory Play",
+    "estimatedTime": "20-30 menit",
+    "materials": ["Beras", "Pewarna makanan", "Kotak plastik", "Sendok", "Mainan kecil"],
+    "relatedPlaykitSlug": "sensory-fun-box",
+    "image": "/images/explore-sensory.jpg"
+  },
+  {
+    "id": "play-2",
+    "title": "Flashcard Hewan & Suara",
+    "description": "Perkenalkan anak pada berbagai hewan dan suaranya menggunakan flashcard interaktif. Cocok untuk stimulasi bahasa dan kosa kata.",
+    "benefits": ["Mengembangkan kosa kata", "Melatih memori visual", "Mengenal dunia hewan"],
+    "ageRange": "1-4 tahun",
+    "developmentGoals": ["bahasa", "kognitif"],
+    "activityType": "Belajar Sambil Bermain",
+    "estimatedTime": "15-20 menit",
+    "materials": ["Flashcard hewan", "Aplikasi suara hewan (opsional)"],
+    "relatedPlaykitSlug": "smart-flashcard-set",
+    "image": "/images/explore-flashcard.jpg"
+  },
+  {
+    "id": "play-3",
+    "title": "Main Peran: Warung Sayur",
+    "description": "Ajak anak bermain jual-belian sayuran. Aktivitas ini mengajarkan konsep sosial, berhitung, dan interaksi.",
+    "benefits": ["Melatih interaksi sosial", "Mengenal konsep berhitung", "Mengembangkan imajinasi"],
+    "ageRange": "3-6 tahun",
+    "developmentGoals": ["sosial", "kognitif", "bahasa"],
+    "activityType": "Role Play",
+    "estimatedTime": "30-45 menit",
+    "materials": ["Mainan sayur", "Keranjang", "Uang-uangan", "Meja kecil"],
+    "relatedPlaykitSlug": "role-play-kit",
+    "image": "/images/explore-roleplay.jpg"
+  },
+  {
+    "id": "play-4",
+    "title": "Menari dengan Selendang",
+    "description": "Ajak anak menari bebas menggunakan selendang warna-warni. Aktivitas fisik yang menyenangkan sambil mendengar musik.",
+    "benefits": ["Mengembangkan motorik kasar", "Melatih koordinasi tubuh", "Mengekspresikan emosi"],
+    "ageRange": "2-5 tahun",
+    "developmentGoals": ["motorik", "sosial"],
+    "activityType": "Gerak & Musik",
+    "estimatedTime": "15-20 menit",
+    "materials": ["Selendang warna-warni", "Musik ceria"],
+    "image": "/images/explore-dance.jpg"
+  },
+  {
+    "id": "play-5",
+    "title": "Mencocokkan Warna & Bentuk",
+    "description": "Aktivitas mencocokkan warna dan bentuk menggunakan balok atau puzzle sederhana untuk stimulasi kognitif.",
+    "benefits": ["Mengenal warna dan bentuk", "Melatih konsentrasi", "Mengembangkan logika"],
+    "ageRange": "1-4 tahun",
+    "developmentGoals": ["kognitif", "motorik"],
+    "activityType": "Puzzle & Sortir",
+    "estimatedTime": "15-25 menit",
+    "materials": ["Balok warna", "Papan sortir bentuk", "Kartu warna"],
+    "image": "/images/explore-matching.jpg"
+  },
+  {
+    "id": "play-6",
+    "title": "Bercerita dengan Boneka Tangan",
+    "description": "Gunakan boneka tangan untuk bercerita tentang petualangan seru. Anak bisa ikut memerankan tokoh.",
+    "benefits": ["Mengembangkan imajinasi", "Melatih kemampuan bercerita", "Membangun kepercayaan diri"],
+    "ageRange": "3-6 tahun",
+    "developmentGoals": ["bahasa", "sosial", "kognitif"],
+    "activityType": "Storytelling",
+    "estimatedTime": "20-30 menit",
+    "materials": ["Boneka tangan", "Buku cerita"],
+    "relatedPlaykitSlug": "kotak-cerita-ajaib",
+    "image": "/images/explore-storytelling.jpg"
+  }
+]

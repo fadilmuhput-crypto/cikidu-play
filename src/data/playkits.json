@@ -1,0 +1,46 @@
+[
+  {
+    "slug": "sensory-fun-box",
+    "name": "Sensory Fun Box",
+    "description": "Playkit sensori lengkap dengan berbagai tekstur dan alat untuk stimulasi indra anak.",
+    "fullDescription": "Sensory Fun Box adalah playkit yang dirancang khusus untuk merangsang perkembangan sensorik anak. Berisi berbagai alat dan bahan dengan tekstur, warna, dan bentuk yang beragam. Cocok untuk anak usia 1-4 tahun.\n\n**Isi Paket:**\n- 6 sensory bottles dengan warna berbeda\n- Playdough 4 warna (non-toxic)\n- Sensory tray\n- 3 alat cetak berbagai bentuk\n- 2 sendok kayu\n- Buku panduan aktivitas (20 aktivitas)\n\nSemua bahan aman dan non-toksik. Pengawasan orang tua tetap diperlukan saat bermain.",
+    "ageSuitability": "1-4 tahun",
+    "developmentFocus": ["Sensorik", "Motorik Halus", "Kognitif"],
+    "price": "Rp 175.000",
+    "images": ["/images/kit-sensory-1.jpg", "/images/kit-sensory-2.jpg"],
+    "whatsappMessage": "Halo! Saya tertarik dengan produk Sensory Fun Box. Bisa info lebih lanjut?"
+  },
+  {
+    "slug": "kotak-cerita-ajaib",
+    "name": "Kotak Cerita Ajaib",
+    "description": "Playkit storytelling interaktif untuk mengembangkan imajinasi dan kemampuan bahasa anak.",
+    "fullDescription": "Kotak Cerita Ajaib adalah playkit yang membantu orang tua bercerita dengan cara interaktif dan menyenangkan. Dilengkapi dengan boneka jari, kartu cerita, dan properti mini.\n\n**Isi Paket:**\n- 5 boneka jari karakter hewan\n- 10 kartu cerita bergambar\n- Panggung mini lipat\n- Buku panduan cerita (10 cerita)\n- Stiker reward\n\nCocok untuk anak usia 3-6 tahun. Playkit ini mendukung perkembangan bahasa, imajinasi, dan bonding orang tua-anak.",
+    "ageSuitability": "3-6 tahun",
+    "developmentFocus": ["Bahasa", "Kognitif", "Sosial-Emosional"],
+    "price": "Rp 145.000",
+    "images": ["/images/kit-story-1.jpg", "/images/kit-story-2.jpg"],
+    "whatsappMessage": "Halo! Saya tertarik dengan produk Kotak Cerita Ajaib. Bisa info lebih lanjut?"
+  },
+  {
+    "slug": "smart-flashcard-set",
+    "name": "Smart Flashcard Set",
+    "description": "Kartu belajar interaktif untuk stimulasi bahasa, kognitif, dan pengenalan konsep dasar.",
+    "fullDescription": "Smart Flashcard Set adalah paket kartu belajar komprehensif yang mencakup berbagai tema. Setiap kartu didesain dengan ilustrasi menarik dan warna cerah.\n\n**Isi Paket:**\n- 50 kartu hewan (dengan fakta unik)\n- 30 kartu benda sehari-hari\n- 20 kartu emosi\n- 10 kartu aktivitas\n- Buku panduan penggunaan\n- Box penyimpanan\n\nSetiap tema dikemas terpisah untuk memudahkan fokus belajar. Cocok untuk anak usia 1-4 tahun.",
+    "ageSuitability": "1-4 tahun",
+    "developmentFocus": ["Bahasa", "Kognitif", "Memori Visual"],
+    "price": "Rp 120.000",
+    "images": ["/images/kit-flashcard-1.jpg", "/images/kit-flashcard-2.jpg"],
+    "whatsappMessage": "Halo! Saya tertarik dengan produk Smart Flashcard Set. Bisa info lebih lanjut?"
+  },
+  {
+    "slug": "role-play-kit",
+    "name": "Role Play Kit",
+    "description": "Set main peran lengkap untuk mengembangkan imajinasi, sosial, dan keterampilan berkomunikasi anak.",
+    "fullDescription": "Role Play Kit adalah set main peran yang memungkinkan anak bereksplorasi dengan berbagai profesi dan situasi sehari-hari. Seri pertama: Warung Sayur!\n\n**Isi Paket:**\n- 8 mainan sayur (kayu, non-toxic)\n- 2 keranjang belanja\n- Uang-uangan kertas dan koin\n- Celemek mini\n- Buku panduan skenario bermain\n- Tas belanja kain\n\nAnak bisa belajar berhitung, berinteraksi, dan mengembangkan imajinasi melalui permainan jual-belian.",
+    "ageSuitability": "3-6 tahun",
+    "developmentFocus": ["Sosial", "Kognitif", "Bahasa", "Motorik Halus"],
+    "price": "Rp 165.000",
+    "images": ["/images/kit-roleplay-1.jpg", "/images/kit-roleplay-2.jpg"],
+    "whatsappMessage": "Halo! Saya tertarik dengan produk Role Play Kit. Bisa info lebih lanjut?"
+  }
+]
