@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { getAllPlaykits } from "@/db/queries"
+import SafeImage from "@/components/SafeImage"
 
 export const dynamic = "force-dynamic"
 
@@ -33,11 +34,7 @@ export default async function PlaykitsPage() {
               className="group bg-white rounded-2xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="h-48 bg-gradient-to-br from-primary-light/30 to-secondary-light/30 flex items-center justify-center text-4xl overflow-hidden">
-                {kit.images?.[0] ? (
-                  <img src={kit.images[0]} alt={kit.name} className="w-full h-full object-cover" />
-                ) : (
-                  <span>📦</span>
-                )}
+                <SafeImage src={kit.images?.[0]} alt={kit.name} fallback="📦" className="w-full h-full object-cover" />
               </div>
               <div className="p-5">
                 <h2 className="font-semibold mb-2 group-hover:text-primary transition-colors leading-snug">

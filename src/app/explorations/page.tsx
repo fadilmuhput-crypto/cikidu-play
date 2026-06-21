@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react"
 import Link from "next/link"
+import SafeImage from "@/components/SafeImage"
 
 // Use inline type to avoid import issues
 interface PlayIdea {
@@ -183,11 +184,7 @@ export default function ExplorationsPage() {
                 className="bg-white rounded-2xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="h-40 bg-gradient-to-br from-accent-light/30 to-secondary-light/30 flex items-center justify-center text-4xl overflow-hidden">
-                  {idea.image ? (
-                    <img src={idea.image} alt={idea.title} className="w-full h-full object-cover" />
-                  ) : (
-                    <span>🎯</span>
-                  )}
+                  <SafeImage src={idea.image} alt={idea.title} fallback="🎯" className="w-full h-full object-cover" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-xs text-foreground/50 mb-2">

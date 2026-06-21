@@ -1,6 +1,7 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { getAllBlogs } from "@/db/queries"
+import SafeImage from "@/components/SafeImage"
 
 export const dynamic = "force-dynamic"
 
@@ -33,11 +34,7 @@ export default async function BlogsPage() {
               className="group bg-white rounded-2xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
             >
               <div className="h-48 bg-gradient-to-br from-secondary-light/30 to-primary-light/30 flex items-center justify-center text-4xl overflow-hidden">
-                {blog.image ? (
-                  <img src={blog.image} alt={blog.title} className="w-full h-full object-cover" />
-                ) : (
-                  <span>📝</span>
-                )}
+                <SafeImage src={blog.image} alt={blog.title} fallback="📝" className="w-full h-full object-cover" />
               </div>
               <div className="p-5">
                 <div className="flex items-center gap-2 text-xs text-foreground/50 mb-2">

@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getPlaykitBySlug, getAllPlaykits } from "@/db/queries"
 import WhatsAppButton from "@/components/WhatsAppButton"
+import SafeImage from "@/components/SafeImage"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -52,11 +53,7 @@ export default async function PlaykitDetailPage({ params }: Props) {
       <div className="grid md:grid-cols-2 gap-8 md:gap-12">
         <div>
           <div className="h-72 md:h-96 rounded-2xl bg-gradient-to-br from-primary-light/30 to-secondary-light/30 flex items-center justify-center text-6xl mb-4 overflow-hidden">
-            {kit.images?.[0] ? (
-              <img src={kit.images[0]} alt={kit.name} className="w-full h-full object-cover" />
-            ) : (
-              <span>📦</span>
-            )}
+            <SafeImage src={kit.images?.[0]} alt={kit.name} fallback="📦" className="w-full h-full object-cover" />
           </div>
           {kit.images && kit.images.length > 1 && (
             <div className="flex gap-3">
@@ -65,11 +62,7 @@ export default async function PlaykitDetailPage({ params }: Props) {
                   key={i}
                   className="flex-1 h-20 rounded-xl bg-gradient-to-br from-primary-light/20 to-secondary-light/20 flex items-center justify-center text-xl overflow-hidden"
                 >
-                  {img ? (
-                    <img src={img} alt={`${kit.name} ${i + 2}`} className="w-full h-full object-cover" />
-                  ) : (
-                    <span>📸</span>
-                  )}
+                  <SafeImage src={img} alt={`${kit.name} ${i + 2}`} fallback="📸" className="w-full h-full object-cover" />
                 </div>
               ))}
             </div>

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { getBlogBySlug, getAllBlogs } from "@/db/queries"
+import SafeImage from "@/components/SafeImage"
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -62,11 +63,7 @@ export default async function BlogDetailPage({ params }: Props) {
       </h1>
 
       <div className="h-64 md:h-80 rounded-2xl bg-gradient-to-br from-secondary-light/30 to-primary-light/30 flex items-center justify-center text-6xl mb-10 overflow-hidden">
-        {blog.image ? (
-          <img src={blog.image} alt={blog.title} className="w-full h-full object-cover" />
-        ) : (
-          <span>📖</span>
-        )}
+        <SafeImage src={blog.image} alt={blog.title} fallback="📖" className="w-full h-full object-cover" />
       </div>
 
       <div className="prose prose-lg max-w-none">
