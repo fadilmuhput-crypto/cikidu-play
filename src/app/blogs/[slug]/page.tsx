@@ -1,33 +1,34 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
-import blogs from "@/data/blogs.json"
+import { getBlogBySlug, getAllBlogs } from "@/db/queries"
 
 interface Props {
   params: Promise<{ slug: string }>
 }
 
 export async function generateStaticParams() {
+  const blogs = await getAllBlogs()
   return blogs.map((blog) => ({ slug: blog.slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
-  const blog = blogs.find((b) => b.slug === slug)
+  const blog = await getBlogBySlug(slug)
   if (!blog) return {}
   return {
-    title: blog.seo.title,
-    description: blog.seo.description,
+    title: blog.seoTitle ?? blog.title,
+    description: blog.seoDescription ?? blog.excerpt,
     openGraph: {
-      title: blog.seo.title,
-      description: blog.seo.description,
+      title: blog.seoTitle ?? blog.title,
+      description: blog.seoDescription ?? blog.excerpt,
     },
   }
 }
 
 export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params
-  const blog = blogs.find((b) => b.slug === slug)
+  const blog = await getBlogBySlug(slug)
   if (!blog) notFound()
 
   return (
@@ -90,11 +91,11 @@ export default async function BlogDetailPage({ params }: Props) {
 
       <div className="mt-12 pt-8 border-t border-primary-light/20">
         <p className="text-sm text-foreground/50 mb-4">
-          Dipublikasikan: {new Date(blog.publishedAt).toLocaleDateString("id-ID", {
+          Dipublikasikan: {blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString("id-ID", {
             year: "numeric",
             month: "long",
             day: "numeric",
-          })}
+          }) : "-"}
         </p>
         <div className="flex flex-wrap gap-3">
           <Link

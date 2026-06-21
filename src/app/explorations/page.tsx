@@ -1,27 +1,92 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import Link from "next/link"
-import playIdeas from "@/data/explorations.json"
-import playkits from "@/data/playkits.json"
 
-const ageRanges = Array.from(new Set(playIdeas.map((p) => p.ageRange)))
-const developmentGoals = Array.from(new Set(playIdeas.flatMap((p) => p.developmentGoals)))
-const activityTypes = Array.from(new Set(playIdeas.map((p) => p.activityType)))
+// Use inline type to avoid import issues
+interface PlayIdea {
+  id: number
+  slug: string
+  title: string
+  description: string | null
+  benefits: string[] | null
+  ageRange: string | null
+  developmentGoals: string[] | null
+  activityType: string | null
+  estimatedTime: string | null
+  materials: string[] | null
+  relatedPlaykitSlug: string | null
+  image: string | null
+}
+
+interface Playkit {
+  id: number
+  slug: string
+  name: string
+  description: string | null
+  ageSuitability: string | null
+  developmentFocus: string[] | null
+}
 
 export default function ExplorationsPage() {
+  const [playIdeas, setPlayIdeas] = useState<PlayIdea[]>([])
+  const [playkits, setPlaykits] = useState<Playkit[]>([])
+  const [loading, setLoading] = useState(true)
   const [ageFilter, setAgeFilter] = useState("")
   const [goalFilter, setGoalFilter] = useState("")
   const [typeFilter, setTypeFilter] = useState("")
 
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [ideasRes, kitsRes] = await Promise.all([
+          fetch("/api/explorations"),
+          fetch("/api/playkits"),
+        ])
+        const ideas = await ideasRes.json()
+        const kits = await kitsRes.json()
+        setPlayIdeas(ideas)
+        setPlaykits(kits)
+      } catch (e) {
+        console.error("Failed to fetch data", e)
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const ageRanges = useMemo(
+    () => Array.from(new Set(playIdeas.map((p) => p.ageRange).filter(Boolean as unknown as <T>(x: T | null) => x is T))),
+    [playIdeas]
+  )
+
+  const developmentGoals = useMemo(
+    () => Array.from(new Set(playIdeas.flatMap((p) => p.developmentGoals ?? []))),
+    [playIdeas]
+  )
+
+  const activityTypes = useMemo(
+    () => Array.from(new Set(playIdeas.map((p) => p.activityType).filter(Boolean as unknown as <T>(x: T | null) => x is T))),
+    [playIdeas]
+  )
+
   const filtered = useMemo(() => {
     return playIdeas.filter((idea) => {
       if (ageFilter && idea.ageRange !== ageFilter) return false
-      if (goalFilter && !idea.developmentGoals.includes(goalFilter)) return false
+      if (goalFilter && !(idea.developmentGoals ?? []).includes(goalFilter)) return false
       if (typeFilter && idea.activityType !== typeFilter) return false
       return true
     })
-  }, [ageFilter, goalFilter, typeFilter])
+  }, [playIdeas, ageFilter, goalFilter, typeFilter])
+
+  if (loading) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-12 md:py-16 text-center text-foreground/50">
+        Memuat...
+      </div>
+    )
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
@@ -32,7 +97,6 @@ export default function ExplorationsPage() {
         </p>
       </div>
 
-      {/* Filters */}
       <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-primary-light/10 mb-8">
         <div className="grid md:grid-cols-3 gap-4">
           <div>
@@ -91,7 +155,6 @@ export default function ExplorationsPage() {
         </div>
       </div>
 
-      {/* Results */}
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-foreground/50">
           <div className="text-4xl mb-3">🔍</div>
@@ -140,7 +203,7 @@ export default function ExplorationsPage() {
                   </p>
 
                   <div className="flex flex-wrap gap-1.5 mb-3">
-                    {idea.developmentGoals.map((goal) => (
+                    {(idea.developmentGoals ?? []).map((goal) => (
                       <span
                         key={goal}
                         className="text-xs bg-primary-light/20 text-primary px-2 py-0.5 rounded-full"
@@ -151,11 +214,8 @@ export default function ExplorationsPage() {
                   </div>
 
                   <div className="flex flex-wrap gap-1.5 mb-4">
-                    {idea.benefits.map((benefit) => (
-                      <span
-                        key={benefit}
-                        className="text-xs text-foreground/50"
-                      >
+                    {(idea.benefits ?? []).map((benefit) => (
+                      <span key={benefit} className="text-xs text-foreground/50">
                         ✓ {benefit}
                       </span>
                     ))}

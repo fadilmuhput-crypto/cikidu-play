@@ -1,0 +1,44 @@
+import { pgTable, serial, text, date, integer } from "drizzle-orm/pg-core";
+
+export const blogs = pgTable("blogs", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").unique().notNull(),
+  title: text("title").notNull(),
+  content: text("content").notNull(),
+  excerpt: text("excerpt").notNull(),
+  category: text("category"),
+  ageRange: text("age_range"),
+  developmentType: text("development_type"),
+  image: text("image"),
+  publishedAt: text("published_at"),
+  seoTitle: text("seo_title"),
+  seoDescription: text("seo_description"),
+});
+
+export const playIdeas = pgTable("play_ideas", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").unique().notNull(),
+  title: text("title").notNull(),
+  description: text("description"),
+  benefits: text("benefits").array(),
+  ageRange: text("age_range"),
+  developmentGoals: text("development_goals").array(),
+  activityType: text("activity_type"),
+  estimatedTime: text("estimated_time"),
+  materials: text("materials").array(),
+  relatedPlaykitSlug: text("related_playkit_slug"),
+  image: text("image"),
+});
+
+export const playkits = pgTable("playkits", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").unique().notNull(),
+  name: text("name").notNull(),
+  description: text("description"),
+  fullDescription: text("full_description"),
+  ageSuitability: text("age_suitability"),
+  developmentFocus: text("development_focus").array(),
+  price: text("price"),
+  images: text("images").array(),
+  whatsappMessage: text("whatsapp_message"),
+});
