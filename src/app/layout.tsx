@@ -25,6 +25,7 @@ export const metadata: Metadata = {
     title: "cikidu.play | Inspirasi Bermain Edukatif untuk Anak",
     description:
       "Temukan inspirasi bermain edukatif dan playkit untuk mendukung tumbuh kembang anak.",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
   },
 };
 
