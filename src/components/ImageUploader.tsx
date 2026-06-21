@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState } from "react"
 
 interface Props {
   name: string
@@ -10,16 +10,8 @@ interface Props {
 
 export default function ImageUploader({ name, defaultValue, label }: Props) {
   const [uploading, setUploading] = useState(false)
-  const [preview, setPreview] = useState(defaultValue || "")
-  const [urlInput, setUrlInput] = useState(defaultValue || "")
+  const [value, setValue] = useState(defaultValue || "")
   const [successMsg, setSuccessMsg] = useState("")
-  const hiddenRef = useRef<HTMLInputElement>(null)
-
-  function setValue(url: string) {
-    setPreview(url)
-    setUrlInput(url)
-    if (hiddenRef.current) hiddenRef.current.value = url
-  }
 
   async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0]
@@ -55,13 +47,11 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
     }
   }
 
-  const hasValue = preview !== ""
-
   return (
     <div className="space-y-2">
       {label && <label className="block text-sm font-medium text-foreground/70">{label}</label>}
 
-      <input type="hidden" name={name} ref={hiddenRef} defaultValue={defaultValue || ""} />
+      <input type="hidden" name={name} value={value} readOnly />
 
       <div className="flex items-center gap-3">
         <label className="cursor-pointer inline-flex items-center gap-1 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full hover:bg-primary/20 transition-colors">
@@ -79,7 +69,7 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
 
         <input
           type="text"
-          value={urlInput}
+          value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="https://example.com/image.jpg"
           className="flex-1 rounded-xl border border-primary-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
@@ -90,11 +80,11 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
         <p className="text-xs text-green-600 bg-green-50 px-3 py-1.5 rounded-lg">{successMsg}</p>
       )}
 
-      {hasValue && (
+      {value && (
         <div className="relative w-full h-40 rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
           <img
-            key={preview}
-            src={preview}
+            key={value}
+            src={value}
             alt="Preview"
             className="w-full h-full object-cover"
             onError={(e) => {
