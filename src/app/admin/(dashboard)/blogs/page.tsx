@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getAllBlogs } from "@/db/queries"
 import { deleteBlog } from "./actions"
+import DeleteButton from "@/components/DeleteButton"
 
 export default async function AdminBlogsPage() {
   const blogs = await getAllBlogs().catch(() => [])
@@ -44,16 +45,7 @@ export default async function AdminBlogsPage() {
                       >
                         Edit
                       </Link>
-                      <form action={deleteBlog}>
-                        <input type="hidden" name="id" value={blog.id} />
-                        <button
-                          type="submit"
-                          className="text-xs px-3 py-1.5 rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
-                          onClick={(e) => { if (!confirm("Hapus blog ini?")) e.preventDefault() }}
-                        >
-                          Hapus
-                        </button>
-                      </form>
+                      <DeleteButton action={deleteBlog} id={blog.id} label="Blog" />
                     </div>
                   </td>
                 </tr>

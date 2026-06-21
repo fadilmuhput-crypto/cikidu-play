@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getAllPlayIdeas } from "@/db/queries"
 import { deletePlayIdea } from "./actions"
+import DeleteButton from "@/components/DeleteButton"
 
 export default async function AdminPlayIdeasPage() {
   const ideas = await getAllPlayIdeas().catch(() => [])
@@ -44,16 +45,7 @@ export default async function AdminPlayIdeasPage() {
                       >
                         Edit
                       </Link>
-                      <form action={deletePlayIdea}>
-                        <input type="hidden" name="id" value={idea.id} />
-                        <button
-                          type="submit"
-                          className="text-xs px-3 py-1.5 rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
-                          onClick={(e) => { if (!confirm("Hapus ide bermain ini?")) e.preventDefault() }}
-                        >
-                          Hapus
-                        </button>
-                      </form>
+                      <DeleteButton action={deletePlayIdea} id={idea.id} label="Ide Bermain" />
                     </div>
                   </td>
                 </tr>

@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getAllPlaykits } from "@/db/queries"
 import { deletePlaykit } from "./actions"
+import DeleteButton from "@/components/DeleteButton"
 
 export default async function AdminPlaykitsPage() {
   const kits = await getAllPlaykits().catch(() => [])
@@ -44,16 +45,7 @@ export default async function AdminPlaykitsPage() {
                       >
                         Edit
                       </Link>
-                      <form action={deletePlaykit}>
-                        <input type="hidden" name="id" value={kit.id} />
-                        <button
-                          type="submit"
-                          className="text-xs px-3 py-1.5 rounded-full bg-red-50 text-red-500 hover:bg-red-100 transition-colors"
-                          onClick={(e) => { if (!confirm("Hapus playkit ini?")) e.preventDefault() }}
-                        >
-                          Hapus
-                        </button>
-                      </form>
+                      <DeleteButton action={deletePlaykit} id={kit.id} label="Playkit" />
                     </div>
                   </td>
                 </tr>
