@@ -6,7 +6,7 @@ import blogsData from "@/data/blogs.json";
 import explorationsData from "@/data/explorations.json";
 import playkitsData from "@/data/playkits.json";
 
-const client = postgres(process.env.DATABASE_URL!);
+const client = postgres(process.env.DATABASE_URL!, { prepare: false });
 const db = drizzle(client);
 
 async function seed() {
