@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { getPlaykitBySlug, getAllPlaykits } from "@/db/queries"
+import { getPlaykitBySlug, getAllPlaykits, getAllPlayIdeas } from "@/db/queries"
 import WhatsAppButton from "@/components/WhatsAppButton"
 import SafeImage from "@/components/SafeImage"
 
@@ -42,6 +42,14 @@ export default async function PlaykitDetailPage({ params }: Props) {
   const { slug } = await params
   const kit = await getPlaykitBySlug(slug)
   if (!kit) notFound()
+
+  const relatedIdeas = await getAllPlayIdeas().then((all) =>
+    all.filter((i) => i.relatedPlaykitSlug === slug).slice(0, 3)
+  ).catch(() => [])
+
+  const relatedKits = await getAllPlaykits().then((all) =>
+    all.filter((k) => k.slug !== slug).slice(0, 3)
+  ).catch(() => [])
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 md:py-16">
@@ -110,6 +118,55 @@ export default async function PlaykitDetailPage({ params }: Props) {
           />
         </div>
       </div>
+
+      {relatedIdeas.length > 0 && (
+        <section className="mt-12 pt-8 border-t border-primary-light/20">
+          <h2 className="text-xl font-bold mb-6">Ide Bermain dengan Playkit Ini</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {relatedIdeas.map((idea) => (
+              <Link
+                key={idea.slug}
+                href="/explorations"
+                className="group bg-white rounded-xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="h-24 bg-gradient-to-br from-accent-light/20 to-secondary-light/20 overflow-hidden">
+                  <SafeImage src={idea.image} alt={idea.title} fallback="🎯" className="w-full h-full object-cover" />
+                </div>
+                <div className="p-3">
+                  <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                    {idea.title}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {relatedKits.length > 0 && (
+        <section className="mt-10 pt-8 border-t border-primary-light/20">
+          <h2 className="text-xl font-bold mb-6">Playkit Lainnya</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {relatedKits.map((other) => (
+              <Link
+                key={other.slug}
+                href={`/playkits/${other.slug}`}
+                className="group bg-white rounded-xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="h-24 bg-gradient-to-br from-primary-light/20 to-secondary-light/20 overflow-hidden">
+                  <SafeImage src={other.images?.[0]} alt={other.name} fallback="📦" className="w-full h-full object-cover" />
+                </div>
+                <div className="p-3">
+                  <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-1">
+                    {other.name}
+                  </p>
+                  <p className="text-xs text-primary font-semibold mt-1">{other.price}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }

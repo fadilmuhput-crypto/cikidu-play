@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { getBlogBySlug, getAllBlogs } from "@/db/queries"
+import { getBlogBySlug, getAllBlogs, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
 import SafeImage from "@/components/SafeImage"
 
 export const dynamic = "force-dynamic"
@@ -41,6 +41,18 @@ export default async function BlogDetailPage({ params }: Props) {
   const { slug } = await params
   const blog = await getBlogBySlug(slug)
   if (!blog) notFound()
+
+  const [relatedBlogs, relatedIdeas, relatedKits] = await Promise.all([
+    getAllBlogs().then((all) =>
+      all.filter((b) => b.slug !== slug && b.category === blog.category).slice(0, 3)
+    ).catch(() => []),
+    getAllPlayIdeas().then((all) =>
+      all.filter((i) => i.developmentGoals?.some((g) => g === blog.developmentType)).slice(0, 3)
+    ).catch(() => []),
+    getAllPlaykits().then((all) =>
+      all.filter((k) => k.developmentFocus?.some((f) => f === blog.developmentType)).slice(0, 3)
+    ).catch(() => []),
+  ])
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-12 md:py-16">
@@ -123,6 +135,56 @@ export default async function BlogDetailPage({ params }: Props) {
           </Link>
         </div>
       </div>
+
+      {relatedBlogs.length > 0 && (
+        <section className="mt-12 pt-8 border-t border-primary-light/20">
+          <h2 className="text-xl font-bold mb-6">Blog Terkait</h2>
+          <div className="grid sm:grid-cols-3 gap-4">
+            {relatedBlogs.map((b) => (
+              <Link
+                key={b.slug}
+                href={`/blogs/${b.slug}`}
+                className="group bg-white rounded-xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              >
+                <div className="h-24 bg-gradient-to-br from-primary-light/20 to-secondary-light/20 overflow-hidden">
+                  <SafeImage src={b.image} alt={b.title} fallback="📝" className="w-full h-full object-cover" />
+                </div>
+                <div className="p-3">
+                  <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                    {b.title}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {(relatedIdeas.length > 0 || relatedKits.length > 0) && (
+        <section className="mt-10 p-5 bg-gradient-to-br from-secondary-light/10 to-primary-light/10 rounded-2xl border border-primary-light/10">
+          <h2 className="font-semibold mb-3">💡 Coba Juga</h2>
+          <div className="space-y-2 text-sm">
+            {relatedIdeas.map((idea) => (
+              <Link
+                key={idea.slug}
+                href="/explorations"
+                className="block text-primary hover:underline"
+              >
+                Ide bermain: {idea.title} →
+              </Link>
+            ))}
+            {relatedKits.map((kit) => (
+              <Link
+                key={kit.slug}
+                href={`/playkits/${kit.slug}`}
+                className="block text-primary hover:underline"
+              >
+                Playkit: {kit.name} →
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
     </article>
   )
 }
