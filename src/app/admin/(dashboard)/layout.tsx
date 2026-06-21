@@ -1,7 +1,7 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import Link from "next/link"
-import { logout } from "./actions"
+import { logout } from "../actions"
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "📊" },
