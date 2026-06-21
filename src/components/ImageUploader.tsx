@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef } from "react"
-import { supabase } from "@/lib/supabase/client"
 
 interface Props {
   name: string
@@ -33,26 +32,27 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
 
     setSuccessMsg("")
     setUploading(true)
-    const ext = file.name.split(".").pop()
-    const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
 
-    const { data, error } = await supabase.storage
-      .from("cms-images")
-      .upload(fileName, file, { upsert: false })
+    try {
+      const fd = new FormData()
+      fd.append("file", file)
 
-    if (error) {
-      alert("Gagal upload: " + error.message)
+      const res = await fetch("/api/upload", { method: "POST", body: fd })
+      const data = await res.json()
+
+      if (!res.ok) {
+        alert("Gagal upload: " + (data.error || "Unknown error"))
+        setUploading(false)
+        return
+      }
+
+      setValue(data.url)
       setUploading(false)
-      return
+      setSuccessMsg("Upload berhasil! Gambar tersimpan.")
+    } catch (err: any) {
+      alert("Gagal upload: " + (err.message || "Unknown error"))
+      setUploading(false)
     }
-
-    const { data: urlData } = supabase.storage
-      .from("cms-images")
-      .getPublicUrl(data.path)
-
-    setValue(urlData.publicUrl)
-    setUploading(false)
-    setSuccessMsg("Upload berhasil! Gambar tersimpan.")
   }
 
   const hasValue = preview !== ""
