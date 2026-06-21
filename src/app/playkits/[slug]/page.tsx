@@ -9,21 +9,29 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const kits = await getAllPlaykits()
-  return kits.map((kit) => ({ slug: kit.slug }))
+  try {
+    const kits = await getAllPlaykits()
+    return kits.map((kit) => ({ slug: kit.slug }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const kit = await getPlaykitBySlug(slug)
-  if (!kit) return {}
-  return {
-    title: kit.name ?? "",
-    description: kit.description ?? "",
-    openGraph: {
-      title: kit.name ? `${kit.name} | cikidu.play` : "",
+  try {
+    const { slug } = await params
+    const kit = await getPlaykitBySlug(slug)
+    if (!kit) return {}
+    return {
+      title: kit.name ?? "",
       description: kit.description ?? "",
-    },
+      openGraph: {
+        title: kit.name ? `${kit.name} | cikidu.play` : "",
+        description: kit.description ?? "",
+      },
+    }
+  } catch {
+    return {}
   }
 }
 

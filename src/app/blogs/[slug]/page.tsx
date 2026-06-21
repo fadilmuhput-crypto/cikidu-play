@@ -8,21 +8,29 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  const blogs = await getAllBlogs()
-  return blogs.map((blog) => ({ slug: blog.slug }))
+  try {
+    const blogs = await getAllBlogs()
+    return blogs.map((blog) => ({ slug: blog.slug }))
+  } catch {
+    return []
+  }
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params
-  const blog = await getBlogBySlug(slug)
-  if (!blog) return {}
-  return {
-    title: blog.seoTitle ?? blog.title,
-    description: blog.seoDescription ?? blog.excerpt,
-    openGraph: {
+  try {
+    const { slug } = await params
+    const blog = await getBlogBySlug(slug)
+    if (!blog) return {}
+    return {
       title: blog.seoTitle ?? blog.title,
       description: blog.seoDescription ?? blog.excerpt,
-    },
+      openGraph: {
+        title: blog.seoTitle ?? blog.title,
+        description: blog.seoDescription ?? blog.excerpt,
+      },
+    }
+  } catch {
+    return {}
   }
 }
 

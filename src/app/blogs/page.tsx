@@ -2,6 +2,8 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getAllBlogs } from "@/db/queries"
 
+export const dynamic = "force-dynamic"
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Artikel dan tips seputar aktivitas bermain edukatif, perkembangan anak, dan parenting.",

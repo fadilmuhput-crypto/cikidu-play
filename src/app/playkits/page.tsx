@@ -2,6 +2,8 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getAllPlaykits } from "@/db/queries"
 
+export const dynamic = "force-dynamic"
+
 export const metadata: Metadata = {
   title: "Playkit",
   description: "Koleksi playkit edukatif untuk mendukung perkembangan anak. Belanja mudah via WhatsApp.",
