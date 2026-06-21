@@ -10,6 +10,11 @@ const client = postgres(process.env.DATABASE_URL!, { prepare: false });
 const db = drizzle(client);
 
 async function seed() {
+  console.log("Clearing existing data...");
+  await db.delete(blogs);
+  await db.delete(playIdeas);
+  await db.delete(playkits);
+
   console.log("Seeding blogs...");
   for (const blog of blogsData) {
     await db.insert(blogs).values({
