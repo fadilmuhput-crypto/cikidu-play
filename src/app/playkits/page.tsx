@@ -10,7 +10,12 @@ export const metadata: Metadata = {
 }
 
 export default async function PlaykitsPage() {
-  const kits = await getAllPlaykits()
+  let kits
+  try {
+    kits = await getAllPlaykits()
+  } catch {
+    kits = []
+  }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
