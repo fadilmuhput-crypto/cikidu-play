@@ -10,12 +10,8 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogsPage() {
-  let blogs
-  try {
-    blogs = await getAllBlogs()
-  } catch {
-    blogs = []
-  }
+  let blogs: Awaited<ReturnType<typeof getAllBlogs>> = []
+  try { blogs = await getAllBlogs() } catch {}
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12 md:py-16">
