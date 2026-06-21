@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/explorations', label: 'Ide Bermain' },
   { href: '/playkits', label: 'Playkit' },
   { href: '/blogs', label: 'Blog' },
+  { href: '/tentang-kami', label: 'Tentang' },
 ]
 
 export default function Header() {

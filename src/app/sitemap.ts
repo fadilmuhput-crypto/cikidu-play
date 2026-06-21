@@ -14,6 +14,7 @@ export default async function sitemap() {
     { url: `${BASE}/blogs`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE}/explorations`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE}/playkits`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${BASE}/tentang-kami`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
   ]
 
   const blogPages = blogs.map((b) => ({
