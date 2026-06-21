@@ -103,6 +103,7 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
       {preview && (
         <div className="relative w-full h-40 rounded-xl overflow-hidden bg-gray-100 border border-gray-200">
           <img
+            key={preview}
             src={preview}
             alt="Preview"
             className="w-full h-full object-cover"
