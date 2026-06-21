@@ -33,6 +33,7 @@ export default function ExplorationsPage() {
   const [playIdeas, setPlayIdeas] = useState<PlayIdea[]>([])
   const [playkits, setPlaykits] = useState<Playkit[]>([])
   const [loading, setLoading] = useState(true)
+  const [search, setSearch] = useState("")
   const [ageFilter, setAgeFilter] = useState("")
   const [goalFilter, setGoalFilter] = useState("")
   const [typeFilter, setTypeFilter] = useState("")
@@ -74,12 +75,20 @@ export default function ExplorationsPage() {
 
   const filtered = useMemo(() => {
     return playIdeas.filter((idea) => {
+      if (search.trim()) {
+        const q = search.toLowerCase()
+        const match =
+          idea.title.toLowerCase().includes(q) ||
+          (idea.description || "").toLowerCase().includes(q) ||
+          (idea.benefits ?? []).some((b) => b.toLowerCase().includes(q))
+        if (!match) return false
+      }
       if (ageFilter && idea.ageRange !== ageFilter) return false
       if (goalFilter && !(idea.developmentGoals ?? []).includes(goalFilter)) return false
       if (typeFilter && idea.activityType !== typeFilter) return false
       return true
     })
-  }, [playIdeas, ageFilter, goalFilter, typeFilter])
+  }, [playIdeas, search, ageFilter, goalFilter, typeFilter])
 
   if (loading) {
     return (
@@ -96,6 +105,16 @@ export default function ExplorationsPage() {
         <p className="text-foreground/60 max-w-md mx-auto">
           Temukan aktivitas bermain seru yang sesuai dengan usia dan kebutuhan perkembangan si kecil.
         </p>
+      </div>
+
+      <div className="max-w-md mx-auto mb-6">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Cari aktivitas..."
+          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+        />
       </div>
 
       <div className="bg-white rounded-2xl p-4 md:p-6 shadow-sm border border-primary-light/10 mb-8">
@@ -159,16 +178,17 @@ export default function ExplorationsPage() {
       {filtered.length === 0 ? (
         <div className="text-center py-12 text-foreground/50">
           <div className="text-4xl mb-3">🔍</div>
-          <p>Tidak ada aktivitas yang cocok dengan filter.</p>
+          <p>Tidak ada aktivitas yang cocok dengan pencarian atau filter.</p>
           <button
             onClick={() => {
+              setSearch("")
               setAgeFilter("")
               setGoalFilter("")
               setTypeFilter("")
             }}
             className="mt-3 text-sm text-primary hover:underline"
           >
-            Reset filter
+            Reset filter & pencarian
           </button>
         </div>
       ) : (
