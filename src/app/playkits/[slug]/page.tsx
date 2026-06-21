@@ -5,6 +5,8 @@ import { getPlaykitBySlug, getAllPlaykits } from "@/db/queries"
 import WhatsAppButton from "@/components/WhatsAppButton"
 import SafeImage from "@/components/SafeImage"
 
+export const dynamic = "force-dynamic"
+
 interface Props {
   params: Promise<{ slug: string }>
 }

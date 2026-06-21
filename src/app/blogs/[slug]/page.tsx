@@ -4,6 +4,8 @@ import type { Metadata } from "next"
 import { getBlogBySlug, getAllBlogs } from "@/db/queries"
 import SafeImage from "@/components/SafeImage"
 
+export const dynamic = "force-dynamic"
+
 interface Props {
   params: Promise<{ slug: string }>
 }
