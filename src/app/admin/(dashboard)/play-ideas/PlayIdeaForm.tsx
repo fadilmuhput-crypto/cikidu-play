@@ -1,6 +1,7 @@
 import type { InferSelectModel } from "drizzle-orm"
 import type { playIdeas as playIdeasTable } from "@/db/schema"
 import { createPlayIdea, updatePlayIdea } from "./actions"
+import ImageUploader from "@/components/ImageUploader"
 
 type PlayIdea = InferSelectModel<typeof playIdeasTable>
 
@@ -31,6 +32,8 @@ export default function PlayIdeaForm({ idea }: Props) {
         <input id="slug" name="slug" type="text" defaultValue={idea?.slug}
           className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
       </div>
+
+      <ImageUploader name="image" defaultValue={idea?.image ?? ""} label="Gambar" />
 
       <div className="grid grid-cols-3 gap-4">
         <div>

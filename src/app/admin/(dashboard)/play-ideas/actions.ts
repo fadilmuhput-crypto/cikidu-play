@@ -24,12 +24,14 @@ export async function createPlayIdea(formData: FormData) {
   const benefits = parseArray(formData.get("benefits") as string)
   const developmentGoals = parseArray(formData.get("developmentGoals") as string)
   const materials = parseArray(formData.get("materials") as string)
+  const image = formData.get("image") as string
 
   await db.insert(playIdeas).values({
     title, slug, description: description || null,
     ageRange: ageRange || null, activityType: activityType || null,
     estimatedTime: estimatedTime || null,
     relatedPlaykitSlug: relatedPlaykitSlug || null,
+    image: image || null,
     benefits, developmentGoals, materials,
   })
 
@@ -50,12 +52,14 @@ export async function updatePlayIdea(formData: FormData) {
   const benefits = parseArray(formData.get("benefits") as string)
   const developmentGoals = parseArray(formData.get("developmentGoals") as string)
   const materials = parseArray(formData.get("materials") as string)
+  const image = formData.get("image") as string
 
   await db.update(playIdeas).set({
     title, slug, description: description || null,
     ageRange: ageRange || null, activityType: activityType || null,
     estimatedTime: estimatedTime || null,
     relatedPlaykitSlug: relatedPlaykitSlug || null,
+    image: image || null,
     benefits, developmentGoals, materials,
   }).where(eq(playIdeas.id, id))
 

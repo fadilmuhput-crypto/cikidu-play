@@ -1,6 +1,7 @@
 import type { InferSelectModel } from "drizzle-orm"
 import type { blogs as blogsTable } from "@/db/schema"
 import { createBlog, updateBlog } from "./actions"
+import ImageUploader from "@/components/ImageUploader"
 
 type Blog = InferSelectModel<typeof blogsTable>
 
@@ -35,6 +36,8 @@ export default function BlogForm({ blog }: Props) {
           className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
         />
       </div>
+
+      <ImageUploader name="image" defaultValue={blog?.image ?? ""} label="Gambar Thumbnail" />
 
       <div className="grid grid-cols-3 gap-4">
         <div>

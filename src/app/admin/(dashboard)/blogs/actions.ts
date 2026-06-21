@@ -18,12 +18,14 @@ export async function createBlog(formData: FormData) {
   const seoTitle = formData.get("seoTitle") as string
   const seoDescription = formData.get("seoDescription") as string
   const publishedAt = formData.get("publishedAt") as string
+  const image = formData.get("image") as string
 
   await db.insert(blogs).values({
     title,
     slug,
     content,
     excerpt,
+    image: image || null,
     category: category || null,
     ageRange: ageRange || null,
     developmentType: developmentType || null,
@@ -49,12 +51,14 @@ export async function updateBlog(formData: FormData) {
   const seoTitle = formData.get("seoTitle") as string
   const seoDescription = formData.get("seoDescription") as string
   const publishedAt = formData.get("publishedAt") as string
+  const image = formData.get("image") as string
 
   await db.update(blogs).set({
     title,
     slug,
     content,
     excerpt,
+    image: image || null,
     category: category || null,
     ageRange: ageRange || null,
     developmentType: developmentType || null,

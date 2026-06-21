@@ -61,8 +61,12 @@ export default async function BlogDetailPage({ params }: Props) {
         {blog.title}
       </h1>
 
-      <div className="h-64 md:h-80 rounded-2xl bg-gradient-to-br from-secondary-light/30 to-primary-light/30 flex items-center justify-center text-6xl mb-10">
-        📖
+      <div className="h-64 md:h-80 rounded-2xl bg-gradient-to-br from-secondary-light/30 to-primary-light/30 flex items-center justify-center text-6xl mb-10 overflow-hidden">
+        {blog.image ? (
+          <img src={blog.image} alt={blog.title} className="w-full h-full object-cover" />
+        ) : (
+          <span>📖</span>
+        )}
       </div>
 
       <div className="prose prose-lg max-w-none">

@@ -1,6 +1,7 @@
 import type { InferSelectModel } from "drizzle-orm"
 import type { playkits as playkitsTable } from "@/db/schema"
 import { createPlaykit, updatePlaykit } from "./actions"
+import ImageUploader from "@/components/ImageUploader"
 
 type Playkit = InferSelectModel<typeof playkitsTable>
 
@@ -31,6 +32,8 @@ export default function PlaykitForm({ kit }: Props) {
         <input id="slug" name="slug" type="text" defaultValue={kit?.slug}
           className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
       </div>
+
+      <ImageUploader name="images_0" defaultValue={kit?.images?.[0] ?? ""} label="Gambar Utama" />
 
       <div className="grid grid-cols-3 gap-4">
         <div>
@@ -65,11 +68,13 @@ export default function PlaykitForm({ kit }: Props) {
           className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
       </div>
 
+      <ImageUploader name="images_1" defaultValue={kit?.images?.[1] ?? ""} label="Gambar Tambahan" />
+
       <div>
         <label htmlFor="images" className="block text-sm font-medium text-foreground/70 mb-1">
-          URL Gambar <span className="text-foreground/40">(satu per baris)</span>
+          URL Gambar Tambahan <span className="text-foreground/40">(satu per baris, jika lebih dari 2)</span>
         </label>
-        <textarea id="images" name="images" rows={3} defaultValue={joinArray(kit?.images)}
+        <textarea id="images" name="images" rows={2} defaultValue={joinArray(kit?.images?.slice(2) ?? [])}
           className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
       </div>
 

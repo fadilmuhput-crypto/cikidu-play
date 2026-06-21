@@ -22,7 +22,10 @@ export async function createPlaykit(formData: FormData) {
   const price = formData.get("price") as string
   const whatsappMessage = formData.get("whatsappMessage") as string
   const developmentFocus = parseArray(formData.get("developmentFocus") as string)
-  const images = parseArray(formData.get("images") as string)
+  const images0 = formData.get("images_0") as string
+  const images1 = formData.get("images_1") as string
+  const imagesExtra = parseArray(formData.get("images") as string)
+  const images = [images0, images1, ...(imagesExtra ?? [])].filter(Boolean)
 
   await db.insert(playkits).values({
     name, slug,
@@ -31,7 +34,8 @@ export async function createPlaykit(formData: FormData) {
     ageSuitability: ageSuitability || null,
     price: price || null,
     whatsappMessage: whatsappMessage || null,
-    developmentFocus, images,
+    developmentFocus,
+    images: images.length > 0 ? images : null,
   })
 
   revalidatePath("/admin/playkits")
@@ -49,7 +53,10 @@ export async function updatePlaykit(formData: FormData) {
   const price = formData.get("price") as string
   const whatsappMessage = formData.get("whatsappMessage") as string
   const developmentFocus = parseArray(formData.get("developmentFocus") as string)
-  const images = parseArray(formData.get("images") as string)
+  const images0 = formData.get("images_0") as string
+  const images1 = formData.get("images_1") as string
+  const imagesExtra = parseArray(formData.get("images") as string)
+  const images = [images0, images1, ...(imagesExtra ?? [])].filter(Boolean)
 
   await db.update(playkits).set({
     name, slug,
@@ -58,7 +65,8 @@ export async function updatePlaykit(formData: FormData) {
     ageSuitability: ageSuitability || null,
     price: price || null,
     whatsappMessage: whatsappMessage || null,
-    developmentFocus, images,
+    developmentFocus,
+    images: images.length > 0 ? images : null,
   }).where(eq(playkits.id, id))
 
   revalidatePath("/admin/playkits")
