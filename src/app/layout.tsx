@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const BASE_URL = "https://www.cikidu.web.id"
+const BASE_URL = "https://cikidu.web.id"
 
 export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/logo.png" }],

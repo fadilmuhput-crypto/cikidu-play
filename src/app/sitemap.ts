@@ -1,6 +1,6 @@
 import { getAllBlogs, getAllPlayIdeas, getAllPlaykits, getApprovedPrograms } from "@/db/queries"
 
-const BASE = "https://www.cikidu.web.id"
+const BASE = "https://cikidu.web.id"
 
 export default async function sitemap() {
   const [blogs, ideas, kits, programs] = await Promise.all([

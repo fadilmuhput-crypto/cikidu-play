@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: "/admin/",
       },
     ],
-    sitemap: "https://www.cikidu.web.id/sitemap.xml",
+    sitemap: "https://cikidu.web.id/sitemap.xml",
   }
 }
