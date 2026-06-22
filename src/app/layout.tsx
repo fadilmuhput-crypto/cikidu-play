@@ -3,6 +3,7 @@ import { Nunito, Geist_Mono } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import JsonLd from "@/components/JsonLd";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -52,6 +53,7 @@ export default function RootLayout({
       className={`${nunito.variable} ${geistMono.variable} antialiased`}
     >
       <body className="min-h-screen flex flex-col">
+        <GoogleAnalytics />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
