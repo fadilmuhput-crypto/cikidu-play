@@ -39,3 +39,22 @@ export interface Playkit {
   images: string[]
   whatsappMessage: string
 }
+
+export interface Program {
+  id: number
+  slug: string
+  title: string
+  type: string
+  city: string
+  description: string | null
+  organizerName: string | null
+  organizerContact: string | null
+  websiteUrl: string | null
+  ageRange: string | null
+  startDate: string | null
+  endDate: string | null
+  image: string | null
+  status: string
+  submittedAt: string | null
+  approvedAt: string | null
+}

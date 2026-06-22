@@ -30,6 +30,25 @@ export const playIdeas = pgTable("play_ideas", {
   image: text("image"),
 });
 
+export const programs = pgTable("programs", {
+  id: serial("id").primaryKey(),
+  slug: text("slug").unique().notNull(),
+  title: text("title").notNull(),
+  type: text("type").notNull(),
+  city: text("city").notNull(),
+  description: text("description"),
+  organizerName: text("organizer_name"),
+  organizerContact: text("organizer_contact"),
+  websiteUrl: text("website_url"),
+  ageRange: text("age_range"),
+  startDate: text("start_date"),
+  endDate: text("end_date"),
+  image: text("image"),
+  status: text("status").default("pending").notNull(),
+  submittedAt: text("submitted_at"),
+  approvedAt: text("approved_at"),
+});
+
 export const playkits = pgTable("playkits", {
   id: serial("id").primaryKey(),
   slug: text("slug").unique().notNull(),

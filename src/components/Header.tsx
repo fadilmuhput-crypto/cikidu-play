@@ -8,6 +8,7 @@ const navLinks = [
   { href: '/', label: 'Beranda' },
   { href: '/explorations', label: 'Ide Bermain' },
   { href: '/playkits', label: 'Playkit' },
+  { href: '/programs', label: 'Program' },
   { href: '/blogs', label: 'Blog' },
   { href: '/tentang-kami', label: 'Tentang' },
 ]

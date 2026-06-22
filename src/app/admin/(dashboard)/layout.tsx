@@ -5,6 +5,7 @@ import { logout } from "../actions"
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: "📊" },
+  { href: "/admin/programs", label: "Program & Event", icon: "📅" },
   { href: "/admin/blogs", label: "Blog", icon: "📝" },
   { href: "/admin/play-ideas", label: "Ide Bermain", icon: "🎯" },
   { href: "/admin/playkits", label: "Playkit", icon: "📦" },

@@ -8,6 +8,13 @@
       "when": 1782019409615,
       "tag": "0000_clammy_mercury",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1782087323330,
+      "tag": "0001_freezing_red_ghost",
+      "breakpoints": true
     }
   ]
 }

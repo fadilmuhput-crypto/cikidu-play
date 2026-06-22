@@ -1,14 +1,16 @@
 import Link from "next/link"
-import { getAllBlogs, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
+import { getAllBlogs, getAllPlayIdeas, getAllPlaykits, getAllPrograms } from "@/db/queries"
 
 export default async function AdminDashboard() {
-  const [blogs, ideas, kits] = await Promise.all([
+  const [blogs, ideas, kits, programs] = await Promise.all([
     getAllBlogs().catch(() => []),
     getAllPlayIdeas().catch(() => []),
     getAllPlaykits().catch(() => []),
+    getAllPrograms().catch(() => []),
   ])
 
   const cards = [
+    { label: "Program & Event", count: programs.length, href: "/admin/programs", icon: "📅", color: "bg-amber-50 text-amber-600" },
     { label: "Blog", count: blogs.length, href: "/admin/blogs", icon: "📝", color: "bg-blue-50 text-blue-600" },
     { label: "Ide Bermain", count: ideas.length, href: "/admin/play-ideas", icon: "🎯", color: "bg-green-50 text-green-600" },
     { label: "Playkit", count: kits.length, href: "/admin/playkits", icon: "📦", color: "bg-purple-50 text-purple-600" },
@@ -17,7 +19,7 @@ export default async function AdminDashboard() {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Dashboard</h1>
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-4 gap-4">
         {cards.map((card) => (
           <Link
             key={card.label}

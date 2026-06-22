@@ -1,12 +1,13 @@
-import { getAllBlogs, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
+import { getAllBlogs, getAllPlayIdeas, getAllPlaykits, getApprovedPrograms } from "@/db/queries"
 
 const BASE = "https://www.cikidu.web.id"
 
 export default async function sitemap() {
-  const [blogs, ideas, kits] = await Promise.all([
+  const [blogs, ideas, kits, programs] = await Promise.all([
     getAllBlogs().catch(() => []),
     getAllPlayIdeas().catch(() => []),
     getAllPlaykits().catch(() => []),
+    getApprovedPrograms().catch(() => []),
   ])
 
   const staticPages = [
@@ -14,6 +15,7 @@ export default async function sitemap() {
     { url: `${BASE}/blogs`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE}/explorations`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE}/playkits`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
+    { url: `${BASE}/programs`, lastModified: new Date(), changeFrequency: "weekly" as const, priority: 0.8 },
     { url: `${BASE}/tentang-kami`, lastModified: new Date(), changeFrequency: "monthly" as const, priority: 0.5 },
   ]
 
@@ -31,5 +33,12 @@ export default async function sitemap() {
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogPages, ...kitPages]
+  const programPages = programs.map((p) => ({
+    url: `${BASE}/programs`,
+    lastModified: p.approvedAt ? new Date(p.approvedAt) : new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
+  return [...staticPages, ...blogPages, ...kitPages, ...programPages]
 }

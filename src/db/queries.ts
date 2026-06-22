@@ -1,5 +1,5 @@
 import { db } from "./index";
-import { blogs, playIdeas, playkits } from "./schema";
+import { blogs, playIdeas, playkits, programs } from "./schema";
 import { eq } from "drizzle-orm";
 
 export async function getAllBlogs() {
@@ -18,6 +18,25 @@ export async function getAllPlayIdeas() {
 export async function getPlayIdeaBySlug(slug: string) {
   const result = await db.select().from(playIdeas).where(eq(playIdeas.slug, slug));
   return result[0] ?? null;
+}
+
+export async function getAllPrograms() {
+  try {
+    return db.select().from(programs).orderBy(programs.submittedAt)
+  } catch { return [] }
+}
+
+export async function getApprovedPrograms() {
+  try {
+    return db.select().from(programs).where(eq(programs.status, "approved")).orderBy(programs.submittedAt)
+  } catch { return [] }
+}
+
+export async function getProgramBySlug(slug: string) {
+  try {
+    const result = await db.select().from(programs).where(eq(programs.slug, slug))
+    return result[0] ?? null
+  } catch { return null }
 }
 
 export async function getAllPlaykits() {
