@@ -10,13 +10,7 @@ const navLinks = [
   { href: '/playkits', label: 'Playkit' },
   { href: '/programs', label: 'Program' },
   { href: '/blogs', label: 'Blog' },
-]
-
-const anchorLinks = [
   { href: '/#tentang', label: 'Tentang' },
-  { href: '/#faq', label: 'FAQ' },
-  { href: '/#testimoni', label: 'Testimoni' },
-  { href: '/#kontak', label: 'Kontak' },
 ]
 
 export default function Header() {
@@ -40,16 +34,6 @@ export default function Header() {
               {link.label}
             </Link>
           ))}
-          <div className="w-px h-4 bg-primary-light/30" />
-          {anchorLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-foreground/60 hover:text-primary transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
         </nav>
 
         <button
@@ -69,7 +53,7 @@ export default function Header() {
 
       {open && (
         <nav className="md:hidden border-t border-primary-light/20 px-4 py-4 flex flex-col gap-3 bg-background">
-          {[...navLinks, ...anchorLinks].map((link) => (
+          {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
