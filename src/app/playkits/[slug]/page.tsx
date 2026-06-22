@@ -142,7 +142,7 @@ export default async function PlaykitDetailPage({ params }: Props) {
             {relatedIdeas.map((idea) => (
               <Link
                 key={idea.slug}
-                href="/explorations"
+                href={`/explorations/${idea.slug}`}
                 className="group bg-white rounded-xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
                 <div className="h-24 bg-gradient-to-br from-accent-light/20 to-secondary-light/20 overflow-hidden">

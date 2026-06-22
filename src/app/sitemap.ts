@@ -33,12 +33,19 @@ export default async function sitemap() {
     priority: 0.7,
   }))
 
+  const ideaPages = ideas.map((i) => ({
+    url: `${BASE}/explorations/${i.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }))
+
   const programPages = programs.map((p) => ({
-    url: `${BASE}/programs`,
+    url: `${BASE}/programs/${p.slug}`,
     lastModified: p.approvedAt ? new Date(p.approvedAt) : new Date(),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }))
 
-  return [...staticPages, ...blogPages, ...kitPages, ...programPages]
+  return [...staticPages, ...blogPages, ...ideaPages, ...kitPages, ...programPages]
 }

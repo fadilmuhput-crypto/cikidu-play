@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { submitProgram } from "@/app/admin/(dashboard)/programs/actions"
 
 const types = [
@@ -34,12 +35,12 @@ export default function SubmitProgramPage() {
         <p className="text-foreground/60 mb-6">
           Program kamu sudah kami terima dan akan ditinjau oleh tim kami. Kami akan mengaktifkannya setelah verifikasi.
         </p>
-        <a
+        <Link
           href="/programs"
           className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-white font-semibold rounded-full hover:bg-secondary/90 transition-colors"
         >
           Lihat Program Lain
-        </a>
+        </Link>
       </div>
     )
   }

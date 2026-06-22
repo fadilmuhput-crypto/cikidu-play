@@ -1,43 +1,44 @@
 export interface Blog {
+  id: number
   slug: string
   title: string
   content: string
   excerpt: string
-  category: string
-  ageRange: string
-  developmentType: string
-  image: string
-  publishedAt: string
-  seo: {
-    title: string
-    description: string
-  }
+  category: string | null
+  ageRange: string | null
+  developmentType: string | null
+  image: string | null
+  publishedAt: string | null
+  seoTitle: string | null
+  seoDescription: string | null
 }
 
 export interface PlayIdea {
-  id: string
+  id: number
+  slug: string
   title: string
-  description: string
-  benefits: string[]
-  ageRange: string
-  developmentGoals: string[]
-  activityType: string
-  estimatedTime: string
-  materials: string[]
-  relatedPlaykitSlug?: string
-  image: string
+  description: string | null
+  benefits: string[] | null
+  ageRange: string | null
+  developmentGoals: string[] | null
+  activityType: string | null
+  estimatedTime: string | null
+  materials: string[] | null
+  relatedPlaykitSlug: string | null
+  image: string | null
 }
 
 export interface Playkit {
+  id: number
   slug: string
   name: string
-  description: string
-  fullDescription: string
-  ageSuitability: string
-  developmentFocus: string[]
-  price: string
-  images: string[]
-  whatsappMessage: string
+  description: string | null
+  fullDescription: string | null
+  ageSuitability: string | null
+  developmentFocus: string[] | null
+  price: string | null
+  images: string[] | null
+  whatsappMessage: string | null
 }
 
 export interface Program {

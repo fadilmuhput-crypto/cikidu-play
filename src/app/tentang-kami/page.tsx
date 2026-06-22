@@ -47,7 +47,7 @@ export default function AboutPage() {
           <div className="space-y-3 text-foreground/70">
             <p>
               <span className="font-medium">WhatsApp:</span>{" "}
-              <a href="https://wa.me/6281234567890" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
+              <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6281234567890"}`} className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">
                 +62 812-3456-7890
               </a>
             </p>

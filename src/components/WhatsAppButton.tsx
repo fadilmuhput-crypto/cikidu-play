@@ -9,7 +9,7 @@ interface Props {
 export default function WhatsAppButton({
   message,
   label = "Hubungi via WhatsApp",
-  phoneNumber = "6281234567890",
+  phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6281234567890",
 }: Props) {
   const handleClick = () => {
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`

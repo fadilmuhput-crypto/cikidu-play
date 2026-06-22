@@ -57,7 +57,7 @@ export async function updateProgram(formData: FormData) {
   const image = formData.get("image") as string
   const status = formData.get("status") as string || "pending"
 
-  const data: any = {
+  const data: Record<string, string | null> = {
     title, slug, type, city,
     description: description || null,
     organizerName: organizerName || null,

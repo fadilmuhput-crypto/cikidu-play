@@ -41,8 +41,9 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
       setValue(data.url)
       setUploading(false)
       setSuccessMsg("Upload berhasil! Gambar tersimpan.")
-    } catch (err: any) {
-      alert("Gagal upload: " + (err.message || "Unknown error"))
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Unknown error"
+      alert("Gagal upload: " + message)
       setUploading(false)
     }
   }

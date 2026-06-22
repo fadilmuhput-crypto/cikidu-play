@@ -179,7 +179,7 @@ export default async function BlogDetailPage({ params }: Props) {
             {relatedIdeas.map((idea) => (
               <Link
                 key={idea.slug}
-                href="/explorations"
+                href={`/explorations/${idea.slug}`}
                 className="block text-primary hover:underline"
               >
                 Ide bermain: {idea.title} →

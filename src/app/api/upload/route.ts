@@ -39,7 +39,8 @@ export async function POST(request: Request) {
       .getPublicUrl(data.path)
 
     return NextResponse.json({ url: urlData.publicUrl })
-  } catch (err: any) {
-    return NextResponse.json({ error: err.message }, { status: 500 })
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Unknown error"
+    return NextResponse.json({ error: message }, { status: 500 })
   }
 }

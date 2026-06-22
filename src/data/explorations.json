@@ -10,7 +10,7 @@
     "estimatedTime": "20-30 menit",
     "materials": ["Air", "Wadah besar/baskom", "Saringan", "Botol plastik", "Sendok dan gelas ukur", "Celemek"],
     "relatedPlaykitSlug": null,
-    "image": "/images/explore-waterplay.jpg"
+    "image": "/images/explore-waterplay.svg"
   },
   {
     "id": "play-2",
@@ -23,7 +23,7 @@
     "estimatedTime": "30-45 menit",
     "materials": ["Tepung terigu", "Garam", "Air hangat", "Minyak sayur", "Kunyit/kuning", "Bayam/hijau", "Buah naga/merah"],
     "relatedPlaykitSlug": "sensory-play-dough-set",
-    "image": "/images/explore-playdough.jpg"
+    "image": "/images/explore-playdough.svg"
   },
   {
     "id": "play-3",
@@ -36,7 +36,7 @@
     "estimatedTime": "20-40 menit",
     "materials": ["Kertas untuk peta", "Pensil", "Benda kecil untuk disembunyikan", "Stiker reward"],
     "relatedPlaykitSlug": "nature-explorer-kit",
-    "image": "/images/explore-treasure.jpg"
+    "image": "/images/explore-treasure.svg"
   },
   {
     "id": "play-4",
@@ -49,7 +49,7 @@
     "estimatedTime": "20-30 menit",
     "materials": ["Cetakan es batu", "Pewarna makanan", "Kertas tebal", "Celemek"],
     "relatedPlaykitSlug": "little-artist-creative-kit",
-    "image": "/images/explore-icepainting.jpg"
+    "image": "/images/explore-icepainting.svg"
   },
   {
     "id": "play-5",
@@ -62,6 +62,6 @@
     "estimatedTime": "15 menit (awal) + observasi harian",
     "materials": ["Kapas", "Biji kacang hijau", "Wadah plastik bening", "Air", "Buku catatan mini"],
     "relatedPlaykitSlug": "mini-garden-stem-kit",
-    "image": "/images/explore-berkebun.jpg"
+    "image": "/images/explore-berkebun.svg"
   }
 ]

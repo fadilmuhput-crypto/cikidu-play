@@ -7,7 +7,7 @@
     "category": "Perkembangan Anak",
     "ageRange": "1-6 tahun",
     "developmentType": "Fisik & Motorik",
-    "image": "/images/blog-outdoor.jpg",
+    "image": "/images/blog-outdoor.svg",
     "publishedAt": "2026-06-15",
     "seo": {
       "title": "Manfaat Bermain Outdoor untuk Anak | cikidu.play",
@@ -22,7 +22,7 @@
     "category": "Parenting",
     "ageRange": "2-6 tahun",
     "developmentType": "Sosial & Emosional",
-    "image": "/images/blog-emosi.jpg",
+    "image": "/images/blog-emosi.svg",
     "publishedAt": "2026-06-10",
     "seo": {
       "title": "Mengenalkan Emosi pada Anak Usia Dini | cikidu.play",
@@ -37,7 +37,7 @@
     "category": "Parenting",
     "ageRange": "2-5 tahun",
     "developmentType": "Sosial & Kemandirian",
-    "image": "/images/blog-paud.jpg",
+    "image": "/images/blog-paud.svg",
     "publishedAt": "2026-06-05",
     "seo": {
       "title": "Tips Menyiapkan Anak Masuk PAUD/TK | cikidu.play",
@@ -52,7 +52,7 @@
     "category": "Perkembangan Fisik",
     "ageRange": "2-6 tahun",
     "developmentType": "Motorik Kasar",
-    "image": "/images/blog-motorik.jpg",
+    "image": "/images/blog-motorik.svg",
     "publishedAt": "2026-05-28",
     "seo": {
       "title": "10 Aktivitas Stimulasi Motorik Kasar Anak | cikidu.play",
@@ -67,7 +67,7 @@
     "category": "Kreativitas",
     "ageRange": "1-6 tahun",
     "developmentType": "Kreativitas & Kognitif",
-    "image": "/images/blog-barangbekas.jpg",
+    "image": "/images/blog-barangbekas.svg",
     "publishedAt": "2026-05-20",
     "seo": {
       "title": "Membuat Mainan Edukatif dari Barang Bekas | cikidu.play",

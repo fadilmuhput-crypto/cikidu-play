@@ -7,7 +7,7 @@
     "ageSuitability": "2-6 tahun",
     "developmentFocus": ["Motorik Halus", "Kreativitas", "Sensorik", "Kognitif"],
     "price": "Rp 135.000",
-    "images": ["/images/kit-playdough-1.jpg", "/images/kit-playdough-2.jpg"],
+    "images": ["/images/kit-playdough-1.svg", "/images/kit-playdough-2.svg"],
     "whatsappMessage": "Halo! Saya tertarik dengan produk Sensory Play Dough Set. Bisa info lebih lanjut?"
   },
   {
@@ -18,7 +18,7 @@
     "ageSuitability": "2-6 tahun",
     "developmentFocus": ["Kreativitas", "Motorik Halus", "Sensorik", "Ekspresi Emosi"],
     "price": "Rp 150.000",
-    "images": ["/images/kit-artist-1.jpg", "/images/kit-artist-2.jpg"],
+    "images": ["/images/kit-artist-1.svg", "/images/kit-artist-2.svg"],
     "whatsappMessage": "Halo! Saya tertarik dengan produk Little Artist Creative Kit. Bisa info lebih lanjut?"
   },
   {
@@ -29,7 +29,7 @@
     "ageSuitability": "3-6 tahun",
     "developmentFocus": ["Sains", "Kognitif", "Motorik Halus", "Sensorik"],
     "price": "Rp 160.000",
-    "images": ["/images/kit-explorer-1.jpg", "/images/kit-explorer-2.jpg"],
+    "images": ["/images/kit-explorer-1.svg", "/images/kit-explorer-2.svg"],
     "whatsappMessage": "Halo! Saya tertarik dengan produk Nature Explorer Kit. Bisa info lebih lanjut?"
   },
   {
@@ -40,7 +40,7 @@
     "ageSuitability": "3-6 tahun",
     "developmentFocus": ["Sains", "Motorik Halus", "Tanggung Jawab", "Kognitif"],
     "price": "Rp 155.000",
-    "images": ["/images/kit-garden-1.jpg", "/images/kit-garden-2.jpg"],
+    "images": ["/images/kit-garden-1.svg", "/images/kit-garden-2.svg"],
     "whatsappMessage": "Halo! Saya tertarik dengan produk Mini Garden STEM Kit. Bisa info lebih lanjut?"
   },
   {
@@ -51,7 +51,7 @@
     "ageSuitability": "2-6 tahun",
     "developmentFocus": ["Kemandirian", "Disiplin", "Kognitif", "Sosial-Emosional"],
     "price": "Rp 140.000",
-    "images": ["/images/kit-routine-1.jpg", "/images/kit-routine-2.jpg"],
+    "images": ["/images/kit-routine-1.svg", "/images/kit-routine-2.svg"],
     "whatsappMessage": "Halo! Saya tertarik dengan produk My Daily Routine Chart. Bisa info lebih lanjut?"
   }
 ]

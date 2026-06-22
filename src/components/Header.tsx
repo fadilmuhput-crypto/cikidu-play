@@ -10,7 +10,13 @@ const navLinks = [
   { href: '/playkits', label: 'Playkit' },
   { href: '/programs', label: 'Program' },
   { href: '/blogs', label: 'Blog' },
-  { href: '/tentang-kami', label: 'Tentang' },
+]
+
+const anchorLinks = [
+  { href: '/#tentang', label: 'Tentang' },
+  { href: '/#faq', label: 'FAQ' },
+  { href: '/#testimoni', label: 'Testimoni' },
+  { href: '/#kontak', label: 'Kontak' },
 ]
 
 export default function Header() {
@@ -19,7 +25,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-primary-light/20">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image src="/logo.png" alt="cikidu.play" width={36} height={36} className="rounded" />
           <span className="text-xl font-bold text-primary">cikidu.play</span>
         </Link>
@@ -30,6 +36,16 @@ export default function Header() {
               key={link.href}
               href={link.href}
               className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="w-px h-4 bg-primary-light/30" />
+          {anchorLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium text-foreground/60 hover:text-primary transition-colors"
             >
               {link.label}
             </Link>
@@ -53,7 +69,7 @@ export default function Header() {
 
       {open && (
         <nav className="md:hidden border-t border-primary-light/20 px-4 py-4 flex flex-col gap-3 bg-background">
-          {navLinks.map((link) => (
+          {[...navLinks, ...anchorLinks].map((link) => (
             <Link
               key={link.href}
               href={link.href}
