@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { getAllPlaykits } from "@/db/queries"
-import { deletePlaykit } from "./actions"
+import { deletePlaykit, syncPlaykitsFromJson } from "./actions"
 import DeleteButton from "@/components/DeleteButton"
+import SyncButton from "./SyncButton"
 
 export default async function AdminPlaykitsPage() {
   const kits = await getAllPlaykits().catch(() => [])
@@ -10,12 +11,15 @@ export default async function AdminPlaykitsPage() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">Playkit</h1>
-        <Link
-          href="/admin/playkits/new"
-          className="inline-flex items-center gap-1 px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-full hover:bg-secondary/90 transition-colors"
-        >
-          + Tambah Playkit
-        </Link>
+        <div className="flex items-center gap-3">
+          <SyncButton syncAction={syncPlaykitsFromJson} />
+          <Link
+            href="/admin/playkits/new"
+            className="inline-flex items-center gap-1 px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-full hover:bg-secondary/90 transition-colors"
+          >
+            + Tambah Playkit
+          </Link>
+        </div>
       </div>
 
       <div className="bg-white rounded-2xl shadow-sm border border-gray-200 overflow-hidden">
