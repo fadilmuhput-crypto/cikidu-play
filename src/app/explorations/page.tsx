@@ -113,7 +113,7 @@ export default function ExplorationsPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Cari aktivitas..."
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 
@@ -126,7 +126,7 @@ export default function ExplorationsPage() {
             <select
               value={ageFilter}
               onChange={(e) => setAgeFilter(e.target.value)}
-              className="w-full rounded-xl border border-primary-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-accent-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
             >
               <option value="">Semua Usia</option>
               {ageRanges.map((range) => (
@@ -144,7 +144,7 @@ export default function ExplorationsPage() {
             <select
               value={goalFilter}
               onChange={(e) => setGoalFilter(e.target.value)}
-              className="w-full rounded-xl border border-primary-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-accent-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
             >
               <option value="">Semua Tujuan</option>
               {developmentGoals.map((goal) => (
@@ -162,7 +162,7 @@ export default function ExplorationsPage() {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="w-full rounded-xl border border-primary-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-accent-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
             >
               <option value="">Semua Jenis</option>
               {activityTypes.map((type) => (
@@ -227,7 +227,7 @@ export default function ExplorationsPage() {
                     {(idea.developmentGoals ?? []).map((goal) => (
                       <span
                         key={goal}
-                        className="text-xs bg-primary-light/20 text-primary px-2 py-0.5 rounded-full"
+                        className="text-xs bg-accent-light/30 text-accent-dark px-2 py-0.5 rounded-full"
                       >
                         {goal}
                       </span>

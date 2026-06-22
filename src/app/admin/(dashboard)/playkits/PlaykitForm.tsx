@@ -24,13 +24,13 @@ export default function PlaykitForm({ kit }: Props) {
       <div>
         <label htmlFor="name" className="block text-sm font-medium text-foreground/70 mb-1">Nama *</label>
         <input id="name" name="name" type="text" required defaultValue={kit?.name}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <div>
         <label htmlFor="slug" className="block text-sm font-medium text-foreground/70 mb-1">Slug</label>
         <input id="slug" name="slug" type="text" defaultValue={kit?.slug}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <ImageUploader name="images_0" defaultValue={kit?.images?.[0] ?? ""} label="Gambar Utama" />
@@ -39,12 +39,12 @@ export default function PlaykitForm({ kit }: Props) {
         <div>
           <label htmlFor="ageSuitability" className="block text-sm font-medium text-foreground/70 mb-1">Usia</label>
           <input id="ageSuitability" name="ageSuitability" type="text" defaultValue={kit?.ageSuitability ?? ""}
-            className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
         </div>
         <div>
           <label htmlFor="price" className="block text-sm font-medium text-foreground/70 mb-1">Harga</label>
           <input id="price" name="price" type="text" defaultValue={kit?.price ?? ""}
-            className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
         </div>
       </div>
 
@@ -53,19 +53,19 @@ export default function PlaykitForm({ kit }: Props) {
           Fokus Perkembangan <span className="text-foreground/40">(satu per baris)</span>
         </label>
         <textarea id="developmentFocus" name="developmentFocus" rows={3} defaultValue={joinArray(kit?.developmentFocus)}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <div>
         <label htmlFor="description" className="block text-sm font-medium text-foreground/70 mb-1">Deskripsi Singkat</label>
         <textarea id="description" name="description" rows={2} defaultValue={kit?.description ?? ""}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <div>
         <label htmlFor="fullDescription" className="block text-sm font-medium text-foreground/70 mb-1">Deskripsi Lengkap</label>
         <textarea id="fullDescription" name="fullDescription" rows={6} defaultValue={kit?.fullDescription ?? ""}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <ImageUploader name="images_1" defaultValue={kit?.images?.[1] ?? ""} label="Gambar Tambahan" />
@@ -75,18 +75,18 @@ export default function PlaykitForm({ kit }: Props) {
           URL Gambar Tambahan <span className="text-foreground/40">(satu per baris, jika lebih dari 2)</span>
         </label>
         <textarea id="images" name="images" rows={2} defaultValue={joinArray(kit?.images?.slice(2) ?? [])}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <div>
         <label htmlFor="whatsappMessage" className="block text-sm font-medium text-foreground/70 mb-1">Pesan WhatsApp</label>
         <textarea id="whatsappMessage" name="whatsappMessage" rows={2} defaultValue={kit?.whatsappMessage ?? ""}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30" />
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
       <div className="flex gap-3 pt-2">
         <button type="submit"
-          className="px-6 py-2.5 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors">
+          className="px-6 py-2.5 bg-secondary text-white font-semibold rounded-full hover:bg-secondary/90 transition-colors">
           {isEdit ? "Simpan Perubahan" : "Buat Playkit"}
         </button>
         <a href="/admin/playkits"

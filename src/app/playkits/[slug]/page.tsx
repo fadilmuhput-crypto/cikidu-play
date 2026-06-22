@@ -88,7 +88,7 @@ export default async function PlaykitDetailPage({ params }: Props) {
           </div>
 
           <h1 className="text-3xl font-bold mb-4">{kit.name}</h1>
-          <p className="text-2xl font-bold text-primary mb-6">{kit.price}</p>
+          <p className="text-2xl font-bold text-secondary mb-6">{kit.price}</p>
 
           <div className="mb-6">
             <h2 className="font-semibold mb-3">Deskripsi</h2>
@@ -104,7 +104,7 @@ export default async function PlaykitDetailPage({ params }: Props) {
                 {kit.developmentFocus.map((focus) => (
                   <span
                     key={focus}
-                    className="text-xs bg-primary-light/20 text-primary px-3 py-1 rounded-full"
+                    className="text-xs bg-accent-light/30 text-accent-dark px-3 py-1 rounded-full"
                   >
                     {focus}
                   </span>
@@ -177,7 +177,7 @@ export default async function PlaykitDetailPage({ params }: Props) {
                   <p className="text-sm font-medium leading-snug group-hover:text-primary transition-colors line-clamp-1">
                     {other.name}
                   </p>
-                  <p className="text-xs text-primary font-semibold mt-1">{other.price}</p>
+                  <p className="text-xs text-secondary font-semibold mt-1">{other.price}</p>
                 </div>
               </Link>
             ))}

@@ -12,7 +12,7 @@ export default async function AdminPlayIdeasPage() {
         <h1 className="text-2xl font-bold">Ide Bermain</h1>
         <Link
           href="/admin/play-ideas/new"
-          className="inline-flex items-center gap-1 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-1 px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-full hover:bg-secondary/90 transition-colors"
         >
           + Tambah Ide
         </Link>
@@ -41,7 +41,7 @@ export default async function AdminPlayIdeasPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/play-ideas/${idea.id}/edit`}
-                        className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                        className="text-xs px-3 py-1.5 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
                       >
                         Edit
                       </Link>

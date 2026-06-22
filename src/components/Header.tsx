@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const navLinks = [
   { href: '/', label: 'Beranda' },
@@ -17,9 +18,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur border-b border-primary-light/20">
       <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-primary">
-          <span className="text-2xl">✦</span>
-          <span>cikidu.play</span>
+        <Link href="/" className="flex items-center gap-2">
+          <Image src="/logo.png" alt="cikidu.play" width={36} height={36} className="rounded" />
+          <span className="text-xl font-bold text-primary">cikidu.play</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-6">

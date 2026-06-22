@@ -12,7 +12,7 @@ export default async function AdminBlogsPage() {
         <h1 className="text-2xl font-bold">Blog</h1>
         <Link
           href="/admin/blogs/new"
-          className="inline-flex items-center gap-1 px-4 py-2 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary/90 transition-colors"
+          className="inline-flex items-center gap-1 px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-full hover:bg-secondary/90 transition-colors"
         >
           + Tambah Blog
         </Link>
@@ -41,7 +41,7 @@ export default async function AdminBlogsPage() {
                     <div className="flex items-center justify-end gap-2">
                       <Link
                         href={`/admin/blogs/${blog.id}/edit`}
-                        className="text-xs px-3 py-1.5 rounded-full bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                        className="text-xs px-3 py-1.5 rounded-full bg-secondary/10 text-secondary hover:bg-secondary/20 transition-colors"
                       >
                         Edit
                       </Link>

@@ -62,7 +62,7 @@ export default function BlogPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Cari blog..."
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 

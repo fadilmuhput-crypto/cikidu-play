@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 const BASE_URL = "https://www.cikidu.web.id"
 
 export const metadata: Metadata = {
+  icons: [{ rel: "icon", url: "/logo.png" }],
   metadataBase: new URL(BASE_URL),
   title: {
     default: "cikidu.play | Inspirasi Bermain Edukatif untuk Anak",

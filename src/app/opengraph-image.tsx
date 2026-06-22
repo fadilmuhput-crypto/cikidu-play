@@ -12,7 +12,7 @@ export default async function OGImage() {
           display: "flex",
           flexDirection: "column",
           padding: "80px",
-          background: "linear-gradient(135deg, #faf0e6 0%, #fef9f4 100%)",
+          background: "linear-gradient(135deg, #fef2e0 0%, #fef9f4 100%)",
           fontFamily: "system-ui, sans-serif",
         }}
       >
@@ -24,15 +24,14 @@ export default async function OGImage() {
             marginBottom: "40px",
           }}
         >
-          <span style={{ fontSize: "48px" }}>✦</span>
-          <span style={{ fontSize: "64px", fontWeight: 800, color: "#ff7f5c" }}>
+          <span style={{ fontSize: "64px", fontWeight: 800, color: "#ffbd59" }}>
             cikidu.play
           </span>
         </div>
-        <div style={{ fontSize: "40px", color: "#2d2b3a", opacity: 0.7, marginBottom: "12px" }}>
+        <div style={{ fontSize: "40px", color: "#e26334", marginBottom: "12px", fontWeight: 600 }}>
           Inspirasi Bermain Edukatif
         </div>
-        <div style={{ fontSize: "40px", color: "#2d2b3a", opacity: 0.7 }}>
+        <div style={{ fontSize: "36px", color: "#2d2b3a", opacity: 0.7 }}>
           untuk Anak Usia 1–6 Tahun
         </div>
         <div
@@ -44,8 +43,8 @@ export default async function OGImage() {
             width: "300px",
             height: "300px",
             borderRadius: "50%",
-            background: "#ffb49a",
-            opacity: 0.3,
+            background: "#4dbcc8",
+            opacity: 0.2,
           }}
         />
         <div
@@ -56,8 +55,8 @@ export default async function OGImage() {
             width: "220px",
             height: "220px",
             borderRadius: "50%",
-            background: "#a8e6cf",
-            opacity: 0.3,
+            background: "#ffbd59",
+            opacity: 0.2,
           }}
         />
       </div>

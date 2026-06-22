@@ -23,7 +23,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="/explorations"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25"
+                className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-white font-semibold rounded-full hover:bg-secondary/90 transition-colors shadow-lg shadow-secondary/25"
               >
                 Jelajahi Ide Bermain
               </Link>
@@ -166,7 +166,7 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/explorations"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors shadow-lg shadow-primary/25"
+              className="inline-flex items-center justify-center px-6 py-3 bg-secondary text-white font-semibold rounded-full hover:bg-secondary/90 transition-colors shadow-lg shadow-secondary/25"
             >
               Jelajahi Ide Bermain
             </Link>

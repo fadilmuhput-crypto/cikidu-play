@@ -29,12 +29,12 @@ export default async function LoginPage({
                 type="password"
                 required
                 autoFocus
-                className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2.5 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors"
+              className="w-full py-2.5 bg-secondary text-white font-semibold rounded-full hover:bg-secondary/90 transition-colors"
             >
               Masuk
             </button>

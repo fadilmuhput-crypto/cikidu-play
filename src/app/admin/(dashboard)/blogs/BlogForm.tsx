@@ -22,7 +22,7 @@ export default function BlogForm({ blog }: Props) {
         <input
           id="title" name="title" type="text" required
           defaultValue={blog?.title}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 
@@ -33,7 +33,7 @@ export default function BlogForm({ blog }: Props) {
         <input
           id="slug" name="slug" type="text"
           defaultValue={blog?.slug}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 
@@ -45,7 +45,7 @@ export default function BlogForm({ blog }: Props) {
           <input
             id="category" name="category" type="text"
             defaultValue={blog?.category ?? ""}
-            className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
           />
         </div>
         <div>
@@ -53,7 +53,7 @@ export default function BlogForm({ blog }: Props) {
           <input
             id="ageRange" name="ageRange" type="text"
             defaultValue={blog?.ageRange ?? ""}
-            className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
           />
         </div>
         <div>
@@ -61,7 +61,7 @@ export default function BlogForm({ blog }: Props) {
           <input
             id="developmentType" name="developmentType" type="text"
             defaultValue={blog?.developmentType ?? ""}
-            className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
           />
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function BlogForm({ blog }: Props) {
         <textarea
           id="excerpt" name="excerpt" required rows={2}
           defaultValue={blog?.excerpt}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 
@@ -80,7 +80,7 @@ export default function BlogForm({ blog }: Props) {
         <textarea
           id="content" name="content" required rows={12}
           defaultValue={blog?.content}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
         <p className="text-xs text-foreground/40 mt-1">
           Gunakan ## untuk heading, **teks** untuk tebal, dan baris kosong untuk paragraf.
@@ -92,7 +92,7 @@ export default function BlogForm({ blog }: Props) {
         <input
           id="publishedAt" name="publishedAt" type="datetime-local"
           defaultValue={blog?.publishedAt ? new Date(blog.publishedAt).toISOString().slice(0, 16) : ""}
-          className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 
@@ -104,7 +104,7 @@ export default function BlogForm({ blog }: Props) {
             <input
               id="seoTitle" name="seoTitle" type="text"
               defaultValue={blog?.seoTitle ?? ""}
-              className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
             />
           </div>
           <div>
@@ -112,7 +112,7 @@ export default function BlogForm({ blog }: Props) {
             <textarea
               id="seoDescription" name="seoDescription" rows={2}
               defaultValue={blog?.seoDescription ?? ""}
-              className="w-full rounded-xl border border-primary-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
             />
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function BlogForm({ blog }: Props) {
       <div className="flex gap-3 pt-2">
         <button
           type="submit"
-          className="px-6 py-2.5 bg-primary text-white font-semibold rounded-full hover:bg-primary/90 transition-colors"
+          className="px-6 py-2.5 bg-secondary text-white font-semibold rounded-full hover:bg-secondary/90 transition-colors"
         >
           {isEdit ? "Simpan Perubahan" : "Buat Blog"}
         </button>

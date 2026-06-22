@@ -54,7 +54,7 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
       <input type="hidden" name={name} value={value} readOnly />
 
       <div className="flex items-center gap-3">
-        <label className="cursor-pointer inline-flex items-center gap-1 px-4 py-2 bg-primary/10 text-primary text-sm font-semibold rounded-full hover:bg-primary/20 transition-colors">
+        <label className="cursor-pointer inline-flex items-center gap-1 px-4 py-2 bg-secondary/10 text-secondary text-sm font-semibold rounded-full hover:bg-secondary/20 transition-colors">
           {uploading ? "Mengupload..." : "Pilih Gambar"}
           <input
             type="file"
@@ -72,7 +72,7 @@ export default function ImageUploader({ name, defaultValue, label }: Props) {
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder="https://example.com/image.jpg"
-          className="flex-1 rounded-xl border border-primary-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="flex-1 rounded-xl border border-accent-light/30 bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
         />
       </div>
 
