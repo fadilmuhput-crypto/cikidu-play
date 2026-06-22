@@ -5,6 +5,7 @@ import { getPlaykitBySlug, getAllPlaykits, getAllPlayIdeas } from "@/db/queries"
 import WhatsAppButton from "@/components/WhatsAppButton"
 import SafeImage from "@/components/SafeImage"
 import JsonLd from "@/components/JsonLd"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
 export const dynamic = "force-dynamic"
 
@@ -54,12 +55,10 @@ export default async function PlaykitDetailPage({ params }: Props) {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12 md:py-16">
-      <Link
-        href="/playkits"
-        className="inline-flex items-center gap-1 text-sm text-foreground/50 hover:text-primary transition-colors mb-8"
-      >
-        ← Kembali ke Katalog
-      </Link>
+      <Breadcrumbs items={[
+        { label: "Playkit", href: "/playkits" },
+        { label: kit.name },
+      ]} />
 
       <div className="grid md:grid-cols-2 gap-8 md:gap-12">
         <div>

@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { getBlogBySlug, getAllBlogs, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
 import SafeImage from "@/components/SafeImage"
 import JsonLd from "@/components/JsonLd"
+import Breadcrumbs from "@/components/Breadcrumbs"
 
 export const dynamic = "force-dynamic"
 
@@ -57,12 +58,10 @@ export default async function BlogDetailPage({ params }: Props) {
 
   return (
     <article className="max-w-3xl mx-auto px-4 py-12 md:py-16">
-      <Link
-        href="/blogs"
-        className="inline-flex items-center gap-1 text-sm text-foreground/50 hover:text-primary transition-colors mb-8"
-      >
-        ← Kembali ke Blog
-      </Link>
+      <Breadcrumbs items={[
+        { label: "Blog", href: "/blogs" },
+        { label: blog.title },
+      ]} />
 
       <div className="flex items-center gap-3 text-sm text-foreground/50 mb-4">
         <span className="bg-secondary-light/30 px-3 py-1 rounded-full text-xs font-medium">
