@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { getPlaykitBySlug, getAllPlaykits, getAllPlayIdeas } from "@/db/queries"
 import WhatsAppButton from "@/components/WhatsAppButton"
 import SafeImage from "@/components/SafeImage"
+import JsonLd from "@/components/JsonLd"
 
 export const dynamic = "force-dynamic"
 
@@ -118,6 +119,22 @@ export default async function PlaykitDetailPage({ params }: Props) {
           />
         </div>
       </div>
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Product",
+          name: kit.name,
+          description: kit.description ?? "",
+          image: kit.images?.[0] ?? "",
+          offers: {
+            "@type": "Offer",
+            price: kit.price?.replace(/[^0-9]/g, "") ?? "0",
+            priceCurrency: "IDR",
+            availability: "https://schema.org/InStock",
+          },
+        }}
+      />
 
       {relatedIdeas.length > 0 && (
         <section className="mt-12 pt-8 border-t border-primary-light/20">

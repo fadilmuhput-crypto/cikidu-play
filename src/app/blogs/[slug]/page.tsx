@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getBlogBySlug, getAllBlogs, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
 import SafeImage from "@/components/SafeImage"
+import JsonLd from "@/components/JsonLd"
 
 export const dynamic = "force-dynamic"
 
@@ -159,6 +160,18 @@ export default async function BlogDetailPage({ params }: Props) {
           </div>
         </section>
       )}
+
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: blog.title,
+          description: blog.excerpt,
+          image: blog.image,
+          datePublished: blog.publishedAt,
+          author: { "@type": "Organization", name: "cikidu.play" },
+        }}
+      />
 
       {(relatedIdeas.length > 0 || relatedKits.length > 0) && (
         <section className="mt-10 p-5 bg-gradient-to-br from-secondary-light/10 to-primary-light/10 rounded-2xl border border-primary-light/10">
