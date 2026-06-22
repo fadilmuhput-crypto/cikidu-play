@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { getAllPrograms } from "@/db/queries"
 import DeleteButton from "@/components/DeleteButton"
-import { deleteProgram } from "./actions"
+import { deleteProgram, syncProgramsFromJson } from "./actions"
+import SyncButton from "../playkits/SyncButton"
 
 export const dynamic = "force-dynamic"
 
@@ -12,12 +13,15 @@ export default async function ProgramsPage() {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold">Program & Event</h1>
-        <Link
-          href="/admin/programs/new"
-          className="inline-flex items-center gap-1 px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-full hover:bg-secondary/90 transition-colors"
-        >
-          + Tambah Program
-        </Link>
+        <div className="flex items-center gap-3">
+          <SyncButton syncAction={syncProgramsFromJson} />
+          <Link
+            href="/admin/programs/new"
+            className="inline-flex items-center gap-1 px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-full hover:bg-secondary/90 transition-colors"
+          >
+            + Tambah Program
+          </Link>
+        </div>
       </div>
 
       {programs.length === 0 ? (
