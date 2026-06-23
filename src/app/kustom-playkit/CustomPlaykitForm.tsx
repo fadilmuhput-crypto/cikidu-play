@@ -1,7 +1,6 @@
 "use client"
 
-import { useActionState } from "react"
-import { submitCustomPlaykit } from "./actions"
+import { useState } from "react"
 
 const EVENT_TYPES = [
   "Ulang Tahun",
@@ -15,10 +14,22 @@ const EVENT_TYPES = [
 ]
 
 export default function CustomPlaykitForm() {
-  const [state, formAction, pending] = useActionState(submitCustomPlaykit, null)
+  const [error, setError] = useState("")
 
   return (
-    <form action={formAction} className="space-y-4">
+    <form
+      action="/kustom-playkit/submit"
+      method="POST"
+      onSubmit={(e) => {
+        const name = (e.currentTarget.elements.namedItem("name") as HTMLInputElement).value
+        const phone = (e.currentTarget.elements.namedItem("phone") as HTMLInputElement).value
+        if (!name || !phone) {
+          e.preventDefault()
+          setError("Nama dan nomor WhatsApp harus diisi.")
+        }
+      }}
+      className="space-y-4"
+    >
       <div>
         <label className="block text-sm font-medium text-foreground/70 mb-1">Nama *</label>
         <input
@@ -88,15 +99,14 @@ export default function CustomPlaykitForm() {
           placeholder="Tema acara, jumlah anak, ide playkit, dll."
         />
       </div>
-      {state?.error && (
-        <p className="text-red-500 text-sm">{state.error}</p>
+      {error && (
+        <p className="text-red-500 text-sm">{error}</p>
       )}
       <button
         type="submit"
-        disabled={pending}
         className="w-full rounded-xl bg-gradient-to-r from-primary to-secondary text-white font-semibold py-3 hover:opacity-90 transition-opacity disabled:opacity-50 text-base"
       >
-        {pending ? "Memproses..." : "Konsultasi via WhatsApp →"}
+        Konsultasi via WhatsApp →
       </button>
       <p className="text-xs text-foreground/40 text-center">
         Data Anda akan dikirim ke WhatsApp kami untuk ditindaklanjuti.

@@ -1,11 +1,11 @@
-"use server"
-
 import { db, customPlaykits } from "@/db"
 import { redirect } from "next/navigation"
+import type { NextRequest } from "next/server"
 
 const WA_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6281931198224"
 
-export async function submitCustomPlaykit(formData: FormData) {
+export async function POST(request: NextRequest) {
+  const formData = await request.formData()
   const name = formData.get("name") as string
   const phone = formData.get("phone") as string
   const eventType = formData.get("eventType") as string
@@ -13,10 +13,6 @@ export async function submitCustomPlaykit(formData: FormData) {
   const childAge = formData.get("childAge") as string
   const budget = formData.get("budget") as string
   const notes = formData.get("notes") as string
-
-  if (!name || !phone) {
-    return { error: "Nama dan nomor WhatsApp harus diisi." }
-  }
 
   try {
     await db.insert(customPlaykits).values({
