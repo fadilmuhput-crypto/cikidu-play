@@ -11,9 +11,7 @@ const navLinks = [
   { href: '/kustom-playkit', label: 'Kustom Playkit' },
   { href: '/programs', label: 'Program' },
   { href: '/blogs', label: 'Blog' },
-  { href: '/favorites', label: 'Favorit' },
   { href: '/contact', label: 'Kontak' },
-  { href: '/#tentang', label: 'Tentang' },
 ]
 
 export default function Header() {

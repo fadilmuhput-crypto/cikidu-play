@@ -139,6 +139,66 @@ export default function Home() {
         </section>
       </AnimatedSection>
 
+      {/* Kustom Playkit */}
+      <AnimatedSection>
+        <section className="py-16 md:py-24 bg-gradient-to-br from-primary-light/10 to-secondary-light/20">
+          <div className="max-w-5xl mx-auto px-4">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-accent-light/50 text-foreground px-3 py-1 rounded-full text-xs font-medium mb-4">
+                  🎨 Layanan Spesial
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight">
+                  Butuh Playkit untuk{" "}
+                  <span className="text-primary">Acara Spesial</span>?
+                </h2>
+                <p className="text-foreground/70 leading-relaxed mb-4">
+                  Kami bikin playkit custom untuk berbagai acara — ulang tahun,
+                  graduation, family gathering, arisan, hingga corporate event.
+                </p>
+                <p className="text-foreground/70 leading-relaxed mb-6">
+                  Tinggal ceritain kebutuhan kamu, kami siapkan rekomendasi
+                  playkit sesuai tema, usia, dan budget. Konsultasi gratis!
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/kustom-playkit"
+                    className="inline-flex items-center justify-center px-5 py-2.5 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-full hover:opacity-90 transition-opacity shadow-lg shadow-secondary/25"
+                  >
+                    Konsultasi Gratis →
+                  </Link>
+                  <Link
+                    href="https://wa.me/6281931198224?text=Halo! Saya mau tanya-tanya tentang Custom Playkit."
+                    target="_blank"
+                    className="inline-flex items-center justify-center px-5 py-2.5 border-2 border-primary text-primary font-semibold rounded-full hover:bg-primary hover:text-white transition-colors"
+                  >
+                    Chat Via WhatsApp
+                  </Link>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { icon: "🎂", label: "Ulang Tahun" },
+                  { icon: "🎓", label: "Graduation" },
+                  { icon: "🌙", label: "Hari Raya" },
+                  { icon: "👨‍👩‍👧‍👦", label: "Family Gathering" },
+                  { icon: "🎪", label: "School Event" },
+                  { icon: "🏢", label: "Corporate Event" },
+                ].map((item) => (
+                  <div
+                    key={item.label}
+                    className="bg-white rounded-xl p-4 border border-primary-light/10 shadow-sm text-center"
+                  >
+                    <div className="text-2xl mb-1">{item.icon}</div>
+                    <p className="text-xs font-medium text-foreground/70">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      </AnimatedSection>
+
       {/* FAQ */}
       <FAQ />
 
