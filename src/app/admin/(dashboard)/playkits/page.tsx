@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { getAllPlaykits } from "@/db/queries"
-import { deletePlaykit, syncPlaykitsFromJson } from "./actions"
+import { deletePlaykit } from "./actions"
+import { syncPlaykitsFromJson } from "./sync"
 import DeleteButton from "@/components/DeleteButton"
 import SyncButton from "./SyncButton"
 

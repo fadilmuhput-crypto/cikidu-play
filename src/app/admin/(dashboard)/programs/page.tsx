@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { getAllPrograms } from "@/db/queries"
 import DeleteButton from "@/components/DeleteButton"
-import { deleteProgram, syncProgramsFromJson } from "./actions"
+import { deleteProgram } from "./actions"
+import { syncProgramsFromJson } from "./sync"
 import SyncButton from "../playkits/SyncButton"
 
 export const dynamic = "force-dynamic"
