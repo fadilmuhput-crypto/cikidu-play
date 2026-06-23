@@ -1,7 +1,7 @@
 import "dotenv/config";
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { blogs, playIdeas, playkits } from "./schema";
+import { blogs, playIdeas, playkits } from "@/db/schema";
 import blogsData from "@/data/blogs.json";
 import explorationsData from "@/data/explorations.json";
 import playkitsData from "@/data/playkits.json";
