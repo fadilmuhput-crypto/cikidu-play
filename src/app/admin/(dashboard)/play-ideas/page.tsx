@@ -1,10 +1,11 @@
 import Link from "next/link"
-import { getAllPlayIdeas } from "@/db/queries"
+import { getAllPlayIdeasAdmin } from "@/db/queries"
 import { deletePlayIdea } from "./actions"
 import DeleteButton from "@/components/DeleteButton"
+import ToggleActiveButton from "@/components/ToggleActiveButton"
 
 export default async function AdminPlayIdeasPage() {
-  const ideas = await getAllPlayIdeas().catch(() => [])
+  const ideas = await getAllPlayIdeasAdmin().catch(() => [])
 
   return (
     <div>
@@ -28,15 +29,19 @@ export default async function AdminPlayIdeasPage() {
                 <th className="text-left px-4 py-3 font-medium text-foreground/60">Judul</th>
                 <th className="text-left px-4 py-3 font-medium text-foreground/60 hidden md:table-cell">Usia</th>
                 <th className="text-left px-4 py-3 font-medium text-foreground/60 hidden md:table-cell">Tipe</th>
+                <th className="text-center px-4 py-3 font-medium text-foreground/60">Aktif</th>
                 <th className="text-right px-4 py-3 font-medium text-foreground/60">Aksi</th>
               </tr>
             </thead>
             <tbody>
               {ideas.map((idea) => (
-                <tr key={idea.id} className="border-b border-gray-100 hover:bg-gray-50/50">
+                <tr key={idea.id} className={`border-b border-gray-100 hover:bg-gray-50/50 ${!idea.isActive ? "opacity-50" : ""}`}>
                   <td className="px-4 py-3 font-medium">{idea.title}</td>
                   <td className="px-4 py-3 text-foreground/60 hidden md:table-cell">{idea.ageRange}</td>
                   <td className="px-4 py-3 text-foreground/60 hidden md:table-cell">{idea.activityType}</td>
+                  <td className="px-4 py-3 text-center">
+                    <ToggleActiveButton table="play_ideas" id={idea.id} isActive={idea.isActive} />
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link

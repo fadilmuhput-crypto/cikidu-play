@@ -1,6 +1,6 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import { pgTable, serial, text } from "drizzle-orm/pg-core";
+import { pgTable, serial, text, boolean, integer } from "drizzle-orm/pg-core";
 
 export const blogs = pgTable("blogs", {
   id: serial("id").primaryKey(),
@@ -15,6 +15,8 @@ export const blogs = pgTable("blogs", {
   publishedAt: text("published_at"),
   seoTitle: text("seo_title"),
   seoDescription: text("seo_description"),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
 });
 
 export const playIdeas = pgTable("play_ideas", {
@@ -30,6 +32,8 @@ export const playIdeas = pgTable("play_ideas", {
   materials: text("materials").array(),
   relatedPlaykitSlug: text("related_playkit_slug"),
   image: text("image"),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
 });
 
 export const programs = pgTable("programs", {
@@ -49,6 +53,8 @@ export const programs = pgTable("programs", {
   status: text("status").default("pending").notNull(),
   submittedAt: text("submitted_at"),
   approvedAt: text("approved_at"),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
 });
 
 export const playkits = pgTable("playkits", {
@@ -62,6 +68,8 @@ export const playkits = pgTable("playkits", {
   price: text("price"),
   images: text("images").array(),
   whatsappMessage: text("whatsapp_message"),
+  isActive: boolean("is_active").default(true).notNull(),
+  sortOrder: integer("sort_order").default(0).notNull(),
 });
 
 const client = postgres(process.env.DATABASE_URL!, {

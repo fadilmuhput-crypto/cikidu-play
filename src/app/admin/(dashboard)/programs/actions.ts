@@ -20,6 +20,7 @@ export async function createProgram(formData: FormData) {
   const endDate = formData.get("endDate") as string
   const image = formData.get("image") as string
   const status = formData.get("status") as string || "pending"
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
 
   await db.insert(programs).values({
     title, slug, type, city,
@@ -33,6 +34,7 @@ export async function createProgram(formData: FormData) {
     image: image || null,
     status,
     submittedAt: new Date().toISOString(),
+    sortOrder,
   })
 
   revalidatePath("/admin/programs")
@@ -55,8 +57,9 @@ export async function updateProgram(formData: FormData) {
   const endDate = formData.get("endDate") as string
   const image = formData.get("image") as string
   const status = formData.get("status") as string || "pending"
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
 
-  const data: Record<string, string | null> = {
+  const data: Record<string, string | number | null> = {
     title, slug, type, city,
     description: description || null,
     organizerName: organizerName || null,
@@ -66,7 +69,7 @@ export async function updateProgram(formData: FormData) {
     startDate: startDate || null,
     endDate: endDate || null,
     image: image || null,
-    status,
+    status, sortOrder,
   }
 
   if (status === "approved") data.approvedAt = new Date().toISOString()
@@ -81,7 +84,7 @@ export async function updateProgram(formData: FormData) {
 
 export async function deleteProgram(formData: FormData) {
   const id = parseInt(formData.get("id") as string)
-  await db.delete(programs).where(eq(programs.id, id))
+  await db.update(programs).set({ isActive: false }).where(eq(programs.id, id))
   revalidatePath("/admin/programs")
   revalidatePath("/programs")
 }

@@ -11,6 +11,8 @@ export interface Blog {
   publishedAt: string | null
   seoTitle: string | null
   seoDescription: string | null
+  isActive: boolean
+  sortOrder: number
 }
 
 export interface PlayIdea {
@@ -26,6 +28,8 @@ export interface PlayIdea {
   materials: string[] | null
   relatedPlaykitSlug: string | null
   image: string | null
+  isActive: boolean
+  sortOrder: number
 }
 
 export interface Playkit {
@@ -39,6 +43,8 @@ export interface Playkit {
   price: string | null
   images: string[] | null
   whatsappMessage: string | null
+  isActive: boolean
+  sortOrder: number
 }
 
 export interface Program {
@@ -58,4 +64,6 @@ export interface Program {
   status: string
   submittedAt: string | null
   approvedAt: string | null
+  isActive: boolean
+  sortOrder: number
 }

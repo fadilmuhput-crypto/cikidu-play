@@ -21,7 +21,13 @@ export async function createPlaykit(formData: FormData) {
   const price = formData.get("price") as string
   const whatsappMessage = formData.get("whatsappMessage") as string
   const developmentFocus = parseArray(formData.get("developmentFocus") as string)
-  const images = parseArray(formData.get("images") as string)
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
+
+  const images: string[] = []
+  for (let i = 0; i < 10; i++) {
+    const img = formData.get(`images_${i}`) as string
+    if (img) images.push(img)
+  }
 
   await db.insert(playkits).values({
     name, slug,
@@ -30,7 +36,8 @@ export async function createPlaykit(formData: FormData) {
     ageSuitability: ageSuitability || null,
     price: price || null,
     whatsappMessage: whatsappMessage || null,
-    developmentFocus, images,
+    developmentFocus, images: images.length > 0 ? images : null,
+    sortOrder,
   })
 
   revalidatePath("/admin/playkits")
@@ -48,7 +55,13 @@ export async function updatePlaykit(formData: FormData) {
   const price = formData.get("price") as string
   const whatsappMessage = formData.get("whatsappMessage") as string
   const developmentFocus = parseArray(formData.get("developmentFocus") as string)
-  const images = parseArray(formData.get("images") as string)
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
+
+  const images: string[] = []
+  for (let i = 0; i < 10; i++) {
+    const img = formData.get(`images_${i}`) as string
+    if (img) images.push(img)
+  }
 
   await db.update(playkits).set({
     name, slug,
@@ -57,7 +70,8 @@ export async function updatePlaykit(formData: FormData) {
     ageSuitability: ageSuitability || null,
     price: price || null,
     whatsappMessage: whatsappMessage || null,
-    developmentFocus, images,
+    developmentFocus, images: images.length > 0 ? images : null,
+    sortOrder,
   }).where(eq(playkits.id, id))
 
   revalidatePath("/admin/playkits")
@@ -68,7 +82,7 @@ export async function updatePlaykit(formData: FormData) {
 
 export async function deletePlaykit(formData: FormData) {
   const id = parseInt(formData.get("id") as string)
-  await db.delete(playkits).where(eq(playkits.id, id))
+  await db.update(playkits).set({ isActive: false }).where(eq(playkits.id, id))
   revalidatePath("/admin/playkits")
   revalidatePath("/playkits")
 }

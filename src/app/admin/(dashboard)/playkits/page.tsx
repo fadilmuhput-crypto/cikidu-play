@@ -1,12 +1,13 @@
 import Link from "next/link"
-import { getAllPlaykits } from "@/db/queries"
+import { getAllPlaykitsAdmin } from "@/db/queries"
 import { deletePlaykit } from "./actions"
 import { syncPlaykitsFromJson } from "./sync"
 import DeleteButton from "@/components/DeleteButton"
+import ToggleActiveButton from "@/components/ToggleActiveButton"
 import SyncButton from "./SyncButton"
 
 export default async function AdminPlaykitsPage() {
-  const kits = await getAllPlaykits().catch(() => [])
+  const kits = await getAllPlaykitsAdmin().catch(() => [])
 
   return (
     <div>
@@ -33,15 +34,19 @@ export default async function AdminPlaykitsPage() {
                 <th className="text-left px-4 py-3 font-medium text-foreground/60">Nama</th>
                 <th className="text-left px-4 py-3 font-medium text-foreground/60 hidden md:table-cell">Usia</th>
                 <th className="text-left px-4 py-3 font-medium text-foreground/60 hidden md:table-cell">Harga</th>
+                <th className="text-center px-4 py-3 font-medium text-foreground/60">Aktif</th>
                 <th className="text-right px-4 py-3 font-medium text-foreground/60">Aksi</th>
               </tr>
             </thead>
             <tbody>
               {kits.map((kit) => (
-                <tr key={kit.id} className="border-b border-gray-100 hover:bg-gray-50/50">
+                <tr key={kit.id} className={`border-b border-gray-100 hover:bg-gray-50/50 ${!kit.isActive ? "opacity-50" : ""}`}>
                   <td className="px-4 py-3 font-medium">{kit.name}</td>
                   <td className="px-4 py-3 text-foreground/60 hidden md:table-cell">{kit.ageSuitability}</td>
                   <td className="px-4 py-3 text-foreground/60 hidden md:table-cell">{kit.price}</td>
+                  <td className="px-4 py-3 text-center">
+                    <ToggleActiveButton table="playkits" id={kit.id} isActive={kit.isActive} />
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link

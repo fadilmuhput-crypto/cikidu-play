@@ -1,7 +1,10 @@
+"use client"
+
 import type { InferSelectModel } from "drizzle-orm"
 import type { playIdeas as playIdeasTable } from "@/db/schema"
 import { createPlayIdea, updatePlayIdea } from "./actions"
 import ImageUploader from "@/components/ImageUploader"
+import { AGE_RANGES, DEVELOPMENT_FOCUS, ACTIVITY_TYPES } from "@/lib/constants"
 
 type PlayIdea = InferSelectModel<typeof playIdeasTable>
 
@@ -27,10 +30,17 @@ export default function PlayIdeaForm({ idea }: Props) {
           className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
-      <div>
-        <label htmlFor="slug" className="block text-sm font-medium text-foreground/70 mb-1">Slug</label>
-        <input id="slug" name="slug" type="text" defaultValue={idea?.slug}
-          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="slug" className="block text-sm font-medium text-foreground/70 mb-1">Slug</label>
+          <input id="slug" name="slug" type="text" defaultValue={idea?.slug}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+        </div>
+        <div>
+          <label htmlFor="sortOrder" className="block text-sm font-medium text-foreground/70 mb-1">Urutan</label>
+          <input id="sortOrder" name="sortOrder" type="number" defaultValue={idea?.sortOrder ?? 0}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+        </div>
       </div>
 
       <ImageUploader name="image" defaultValue={idea?.image ?? ""} label="Gambar" />
@@ -38,13 +48,23 @@ export default function PlayIdeaForm({ idea }: Props) {
       <div className="grid grid-cols-3 gap-4">
         <div>
           <label htmlFor="ageRange" className="block text-sm font-medium text-foreground/70 mb-1">Rentang Usia</label>
-          <input id="ageRange" name="ageRange" type="text" defaultValue={idea?.ageRange ?? ""}
-            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+          <select id="ageRange" name="ageRange" defaultValue={idea?.ageRange ?? ""}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30">
+            <option value="">Pilih usia</option>
+            {AGE_RANGES.map((r) => (
+              <option key={r.value} value={r.value}>{r.label}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="activityType" className="block text-sm font-medium text-foreground/70 mb-1">Tipe Aktivitas</label>
-          <input id="activityType" name="activityType" type="text" defaultValue={idea?.activityType ?? ""}
-            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+          <select id="activityType" name="activityType" defaultValue={idea?.activityType ?? ""}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30">
+            <option value="">Pilih tipe</option>
+            {ACTIVITY_TYPES.map((t) => (
+              <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="estimatedTime" className="block text-sm font-medium text-foreground/70 mb-1">Estimasi Waktu</label>
@@ -60,11 +80,18 @@ export default function PlayIdeaForm({ idea }: Props) {
       </div>
 
       <div>
-        <label htmlFor="developmentGoals" className="block text-sm font-medium text-foreground/70 mb-1">
-          Tujuan Perkembangan <span className="text-foreground/40">(satu per baris)</span>
-        </label>
-        <textarea id="developmentGoals" name="developmentGoals" rows={3} defaultValue={joinArray(idea?.developmentGoals)}
-          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+        <label className="block text-sm font-medium text-foreground/70 mb-1">Tujuan Perkembangan</label>
+        <div className="flex flex-wrap gap-2">
+          {DEVELOPMENT_FOCUS.map((f) => {
+            const checked = idea?.developmentGoals?.includes(f) ?? false
+            return (
+              <label key={f} className="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-accent-light/30 cursor-pointer hover:bg-secondary/5 has-[:checked]:bg-secondary/10 has-[:checked]:border-secondary/30">
+                <input type="checkbox" name="developmentGoals" value={f} defaultChecked={checked} className="accent-secondary" />
+                {f}
+              </label>
+            )
+          })}
+        </div>
       </div>
 
       <div>

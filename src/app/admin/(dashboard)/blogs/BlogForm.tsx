@@ -1,7 +1,10 @@
+"use client"
+
 import type { InferSelectModel } from "drizzle-orm"
 import type { blogs as blogsTable } from "@/db/schema"
 import { createBlog, updateBlog } from "./actions"
 import ImageUploader from "@/components/ImageUploader"
+import { AGE_RANGES, BLOG_CATEGORIES, DEVELOPMENT_FOCUS } from "@/lib/constants"
 
 type Blog = InferSelectModel<typeof blogsTable>
 
@@ -26,15 +29,25 @@ export default function BlogForm({ blog }: Props) {
         />
       </div>
 
-      <div>
-        <label htmlFor="slug" className="block text-sm font-medium text-foreground/70 mb-1">
-          Slug <span className="text-foreground/40">(kosongi untuk generate otomatis)</span>
-        </label>
-        <input
-          id="slug" name="slug" type="text"
-          defaultValue={blog?.slug}
-          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
-        />
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label htmlFor="slug" className="block text-sm font-medium text-foreground/70 mb-1">
+            Slug <span className="text-foreground/40">(kosongi untuk generate otomatis)</span>
+          </label>
+          <input
+            id="slug" name="slug" type="text"
+            defaultValue={blog?.slug}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
+          />
+        </div>
+        <div>
+          <label htmlFor="sortOrder" className="block text-sm font-medium text-foreground/70 mb-1">Urutan</label>
+          <input
+            id="sortOrder" name="sortOrder" type="number"
+            defaultValue={blog?.sortOrder ?? 0}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
+          />
+        </div>
       </div>
 
       <ImageUploader name="image" defaultValue={blog?.image ?? ""} label="Gambar Thumbnail" />
@@ -42,27 +55,42 @@ export default function BlogForm({ blog }: Props) {
       <div className="grid grid-cols-3 gap-4">
         <div>
           <label htmlFor="category" className="block text-sm font-medium text-foreground/70 mb-1">Kategori</label>
-          <input
-            id="category" name="category" type="text"
+          <select
+            id="category" name="category"
             defaultValue={blog?.category ?? ""}
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
-          />
+          >
+            <option value="">Pilih kategori</option>
+            {BLOG_CATEGORIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="ageRange" className="block text-sm font-medium text-foreground/70 mb-1">Rentang Usia</label>
-          <input
-            id="ageRange" name="ageRange" type="text"
+          <select
+            id="ageRange" name="ageRange"
             defaultValue={blog?.ageRange ?? ""}
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
-          />
+          >
+            <option value="">Pilih usia</option>
+            {AGE_RANGES.map((r) => (
+              <option key={r.value} value={r.value}>{r.label}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="developmentType" className="block text-sm font-medium text-foreground/70 mb-1">Tipe Perkembangan</label>
-          <input
-            id="developmentType" name="developmentType" type="text"
+          <select
+            id="developmentType" name="developmentType"
             defaultValue={blog?.developmentType ?? ""}
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
-          />
+          >
+            <option value="">Pilih tipe</option>
+            {DEVELOPMENT_FOCUS.map((f) => (
+              <option key={f} value={f}>{f}</option>
+            ))}
+          </select>
         </div>
       </div>
 

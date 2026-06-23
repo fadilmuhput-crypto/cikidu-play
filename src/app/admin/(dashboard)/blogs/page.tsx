@@ -1,10 +1,11 @@
 import Link from "next/link"
-import { getAllBlogs } from "@/db/queries"
+import { getAllBlogsAdmin } from "@/db/queries"
 import { deleteBlog } from "./actions"
 import DeleteButton from "@/components/DeleteButton"
+import ToggleActiveButton from "@/components/ToggleActiveButton"
 
 export default async function AdminBlogsPage() {
-  const blogs = await getAllBlogs().catch(() => [])
+  const blogs = await getAllBlogsAdmin().catch(() => [])
 
   return (
     <div>
@@ -28,15 +29,19 @@ export default async function AdminBlogsPage() {
                 <th className="text-left px-4 py-3 font-medium text-foreground/60">Judul</th>
                 <th className="text-left px-4 py-3 font-medium text-foreground/60 hidden md:table-cell">Kategori</th>
                 <th className="text-left px-4 py-3 font-medium text-foreground/60 hidden md:table-cell">Slug</th>
+                <th className="text-center px-4 py-3 font-medium text-foreground/60">Aktif</th>
                 <th className="text-right px-4 py-3 font-medium text-foreground/60">Aksi</th>
               </tr>
             </thead>
             <tbody>
               {blogs.map((blog) => (
-                <tr key={blog.id} className="border-b border-gray-100 hover:bg-gray-50/50">
+                <tr key={blog.id} className={`border-b border-gray-100 hover:bg-gray-50/50 ${!blog.isActive ? "opacity-50" : ""}`}>
                   <td className="px-4 py-3 font-medium">{blog.title}</td>
                   <td className="px-4 py-3 text-foreground/60 hidden md:table-cell">{blog.category}</td>
                   <td className="px-4 py-3 text-foreground/50 font-mono text-xs hidden md:table-cell">{blog.slug}</td>
+                  <td className="px-4 py-3 text-center">
+                    <ToggleActiveButton table="blogs" id={blog.id} isActive={blog.isActive} />
+                  </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-2">
                       <Link

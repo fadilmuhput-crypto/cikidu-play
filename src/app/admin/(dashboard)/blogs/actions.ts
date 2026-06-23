@@ -18,12 +18,10 @@ export async function createBlog(formData: FormData) {
   const seoDescription = formData.get("seoDescription") as string
   const publishedAt = formData.get("publishedAt") as string
   const image = formData.get("image") as string
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
 
   await db.insert(blogs).values({
-    title,
-    slug,
-    content,
-    excerpt,
+    title, slug, content, excerpt,
     image: image || null,
     category: category || null,
     ageRange: ageRange || null,
@@ -31,6 +29,7 @@ export async function createBlog(formData: FormData) {
     seoTitle: seoTitle || null,
     seoDescription: seoDescription || null,
     publishedAt: publishedAt || new Date().toISOString(),
+    sortOrder,
   })
 
   revalidatePath("/admin/blogs")
@@ -51,12 +50,10 @@ export async function updateBlog(formData: FormData) {
   const seoDescription = formData.get("seoDescription") as string
   const publishedAt = formData.get("publishedAt") as string
   const image = formData.get("image") as string
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
 
   await db.update(blogs).set({
-    title,
-    slug,
-    content,
-    excerpt,
+    title, slug, content, excerpt,
     image: image || null,
     category: category || null,
     ageRange: ageRange || null,
@@ -64,6 +61,7 @@ export async function updateBlog(formData: FormData) {
     seoTitle: seoTitle || null,
     seoDescription: seoDescription || null,
     publishedAt: publishedAt || new Date().toISOString(),
+    sortOrder,
   }).where(eq(blogs.id, id))
 
   revalidatePath("/admin/blogs")
@@ -74,7 +72,7 @@ export async function updateBlog(formData: FormData) {
 
 export async function deleteBlog(formData: FormData) {
   const id = parseInt(formData.get("id") as string)
-  await db.delete(blogs).where(eq(blogs.id, id))
+  await db.update(blogs).set({ isActive: false }).where(eq(blogs.id, id))
   revalidatePath("/admin/blogs")
   revalidatePath("/blogs")
 }

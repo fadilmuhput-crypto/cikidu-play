@@ -1,7 +1,11 @@
+"use client"
+
+import { useState } from "react"
 import type { InferSelectModel } from "drizzle-orm"
 import type { playkits as playkitsTable } from "@/db/schema"
 import { createPlaykit, updatePlaykit } from "./actions"
 import ImageUploader from "@/components/ImageUploader"
+import { AGE_RANGES, DEVELOPMENT_FOCUS } from "@/lib/constants"
 
 type Playkit = InferSelectModel<typeof playkitsTable>
 
@@ -9,13 +13,10 @@ interface Props {
   kit?: Playkit
 }
 
-function joinArray(arr: string[] | null | undefined): string {
-  return arr?.join("\n") ?? ""
-}
-
 export default function PlaykitForm({ kit }: Props) {
   const action = kit ? updatePlaykit : createPlaykit
   const isEdit = !!kit
+  const [imageCount, setImageCount] = useState(Math.max(1, kit?.images?.length ?? 1))
 
   return (
     <form action={action} className="max-w-2xl space-y-4">
@@ -33,15 +34,23 @@ export default function PlaykitForm({ kit }: Props) {
           className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 
-      <ImageUploader name="images_0" defaultValue={kit?.images?.[0] ?? ""} label="Gambar Utama" />
-
-      <div className="grid grid-cols-3 gap-4">
-        <div>
-          <label htmlFor="ageSuitability" className="block text-sm font-medium text-foreground/70 mb-1">Usia</label>
-          <input id="ageSuitability" name="ageSuitability" type="text" defaultValue={kit?.ageSuitability ?? ""}
+      <div className="flex items-end gap-4">
+        <div className="flex-1">
+          <label htmlFor="sortOrder" className="block text-sm font-medium text-foreground/70 mb-1">Urutan</label>
+          <input id="sortOrder" name="sortOrder" type="number" defaultValue={kit?.sortOrder ?? 0}
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
         </div>
-        <div>
+        <div className="flex-1">
+          <label htmlFor="ageSuitability" className="block text-sm font-medium text-foreground/70 mb-1">Usia</label>
+          <select id="ageSuitability" name="ageSuitability" defaultValue={kit?.ageSuitability ?? ""}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30">
+            <option value="">Pilih usia</option>
+            {AGE_RANGES.map((r) => (
+              <option key={r.value} value={r.value}>{r.label}</option>
+            ))}
+          </select>
+        </div>
+        <div className="flex-1">
           <label htmlFor="price" className="block text-sm font-medium text-foreground/70 mb-1">Harga</label>
           <input id="price" name="price" type="text" defaultValue={kit?.price ?? ""}
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
@@ -49,11 +58,37 @@ export default function PlaykitForm({ kit }: Props) {
       </div>
 
       <div>
-        <label htmlFor="developmentFocus" className="block text-sm font-medium text-foreground/70 mb-1">
-          Fokus Perkembangan <span className="text-foreground/40">(satu per baris)</span>
-        </label>
-        <textarea id="developmentFocus" name="developmentFocus" rows={3} defaultValue={joinArray(kit?.developmentFocus)}
-          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
+        <label className="block text-sm font-medium text-foreground/70 mb-1">Fokus Perkembangan</label>
+        <div className="flex flex-wrap gap-2">
+          {DEVELOPMENT_FOCUS.map((f) => {
+            const checked = kit?.developmentFocus?.includes(f) ?? false
+            return (
+              <label key={f} className="flex items-center gap-1.5 text-sm px-3 py-1.5 rounded-full border border-accent-light/30 cursor-pointer hover:bg-secondary/5 has-[:checked]:bg-secondary/10 has-[:checked]:border-secondary/30">
+                <input type="checkbox" name="developmentFocus" value={f} defaultChecked={checked} className="accent-secondary" />
+                {f}
+              </label>
+            )
+          })}
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-foreground/70 mb-2">Galeri Gambar</label>
+        <div className="space-y-3">
+          {Array.from({ length: imageCount }).map((_, i) => (
+            <ImageUploader key={i} name={`images_${i}`} defaultValue={kit?.images?.[i] ?? ""} label={`Gambar ${i + 1}`} />
+          ))}
+        </div>
+        <button type="button" onClick={() => setImageCount(c => Math.min(c + 1, 10))}
+          className="mt-2 text-xs px-3 py-1.5 rounded-full border border-accent-light/30 text-foreground/60 hover:bg-gray-50">
+          + Tambah Gambar
+        </button>
+        {imageCount > 1 && (
+          <button type="button" onClick={() => setImageCount(c => Math.max(c - 1, 1))}
+            className="mt-2 ml-2 text-xs px-3 py-1.5 rounded-full border border-red-200 text-red-500 hover:bg-red-50">
+            Hapus Gambar Terakhir
+          </button>
+        )}
       </div>
 
       <div>
@@ -65,16 +100,6 @@ export default function PlaykitForm({ kit }: Props) {
       <div>
         <label htmlFor="fullDescription" className="block text-sm font-medium text-foreground/70 mb-1">Deskripsi Lengkap</label>
         <textarea id="fullDescription" name="fullDescription" rows={6} defaultValue={kit?.fullDescription ?? ""}
-          className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
-      </div>
-
-      <ImageUploader name="images_1" defaultValue={kit?.images?.[1] ?? ""} label="Gambar Tambahan" />
-
-      <div>
-        <label htmlFor="images" className="block text-sm font-medium text-foreground/70 mb-1">
-          URL Gambar Tambahan <span className="text-foreground/40">(satu per baris, jika lebih dari 2)</span>
-        </label>
-        <textarea id="images" name="images" rows={2} defaultValue={joinArray(kit?.images?.slice(2) ?? [])}
           className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30" />
       </div>
 

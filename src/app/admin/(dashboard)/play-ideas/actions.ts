@@ -24,6 +24,7 @@ export async function createPlayIdea(formData: FormData) {
   const developmentGoals = parseArray(formData.get("developmentGoals") as string)
   const materials = parseArray(formData.get("materials") as string)
   const image = formData.get("image") as string
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
 
   await db.insert(playIdeas).values({
     title, slug, description: description || null,
@@ -32,6 +33,7 @@ export async function createPlayIdea(formData: FormData) {
     relatedPlaykitSlug: relatedPlaykitSlug || null,
     image: image || null,
     benefits, developmentGoals, materials,
+    sortOrder,
   })
 
   revalidatePath("/admin/play-ideas")
@@ -52,6 +54,7 @@ export async function updatePlayIdea(formData: FormData) {
   const developmentGoals = parseArray(formData.get("developmentGoals") as string)
   const materials = parseArray(formData.get("materials") as string)
   const image = formData.get("image") as string
+  const sortOrder = parseInt(formData.get("sortOrder") as string) || 0
 
   await db.update(playIdeas).set({
     title, slug, description: description || null,
@@ -60,6 +63,7 @@ export async function updatePlayIdea(formData: FormData) {
     relatedPlaykitSlug: relatedPlaykitSlug || null,
     image: image || null,
     benefits, developmentGoals, materials,
+    sortOrder,
   }).where(eq(playIdeas.id, id))
 
   revalidatePath("/admin/play-ideas")
@@ -69,7 +73,7 @@ export async function updatePlayIdea(formData: FormData) {
 
 export async function deletePlayIdea(formData: FormData) {
   const id = parseInt(formData.get("id") as string)
-  await db.delete(playIdeas).where(eq(playIdeas.id, id))
+  await db.update(playIdeas).set({ isActive: false }).where(eq(playIdeas.id, id))
   revalidatePath("/admin/play-ideas")
   revalidatePath("/explorations")
 }

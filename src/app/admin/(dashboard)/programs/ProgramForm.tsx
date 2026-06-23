@@ -2,6 +2,7 @@
 
 import ImageUploader from "@/components/ImageUploader"
 import type { Program } from "@/types"
+import { AGE_RANGES, CITIES } from "@/lib/constants"
 
 interface Props {
   program?: Program
@@ -38,12 +39,20 @@ export default function ProgramForm({ program, action }: Props) {
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         <div>
           <label className="block text-sm font-medium text-foreground/70 mb-1">Slug</label>
           <input
             name="slug"
             defaultValue={program?.slug}
+            className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium text-foreground/70 mb-1">Urutan</label>
+          <input
+            name="sortOrder" type="number"
+            defaultValue={program?.sortOrder ?? 0}
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
           />
         </div>
@@ -66,21 +75,30 @@ export default function ProgramForm({ program, action }: Props) {
       <div className="grid grid-cols-2 gap-4">
         <div>
           <label className="block text-sm font-medium text-foreground/70 mb-1">Kota *</label>
-          <input
+          <select
             name="city"
             defaultValue={program?.city}
             required
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
-          />
+          >
+            <option value="">Pilih kota</option>
+            {CITIES.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-foreground/70 mb-1">Rentang Usia</label>
-          <input
+          <select
             name="ageRange"
             defaultValue={program?.ageRange ?? ""}
-            placeholder="3-6 tahun"
             className="w-full rounded-xl border border-accent-light/30 bg-background px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-accent-light/30"
-          />
+          >
+            <option value="">Pilih usia</option>
+            {AGE_RANGES.map((r) => (
+              <option key={r.value} value={r.value}>{r.label}</option>
+            ))}
+          </select>
         </div>
       </div>
 

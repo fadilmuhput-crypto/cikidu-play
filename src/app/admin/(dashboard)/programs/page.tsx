@@ -1,6 +1,7 @@
 import Link from "next/link"
-import { getAllPrograms } from "@/db/queries"
+import { getAllProgramsAdmin } from "@/db/queries"
 import DeleteButton from "@/components/DeleteButton"
+import ToggleActiveButton from "@/components/ToggleActiveButton"
 import { deleteProgram } from "./actions"
 import { syncProgramsFromJson } from "./sync"
 import SyncButton from "../playkits/SyncButton"
@@ -8,7 +9,7 @@ import SyncButton from "../playkits/SyncButton"
 export const dynamic = "force-dynamic"
 
 export default async function ProgramsPage() {
-  const programs = await getAllPrograms()
+  const programs = await getAllProgramsAdmin()
 
   return (
     <div>
@@ -36,12 +37,13 @@ export default async function ProgramsPage() {
                 <th className="px-4 py-3 font-medium">Tipe</th>
                 <th className="px-4 py-3 font-medium">Kota</th>
                 <th className="px-4 py-3 font-medium">Status</th>
+                <th className="px-4 py-3 text-center font-medium">Aktif</th>
                 <th className="px-4 py-3 font-medium">Aksi</th>
               </tr>
             </thead>
             <tbody>
               {programs.map((p) => (
-                <tr key={p.id} className="border-b border-primary-light/10">
+                <tr key={p.id} className={`border-b border-primary-light/10 ${!p.isActive ? "opacity-50" : ""}`}>
                   <td className="px-4 py-3 font-medium">{p.title}</td>
                   <td className="px-4 py-3 text-foreground/60">{p.type}</td>
                   <td className="px-4 py-3 text-foreground/60">{p.city}</td>
@@ -53,6 +55,9 @@ export default async function ProgramsPage() {
                     }`}>
                       {p.status === "approved" ? "Disetujui" : p.status === "rejected" ? "Ditolak" : "Pending"}
                     </span>
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    <ToggleActiveButton table="programs" id={p.id} isActive={p.isActive} />
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
