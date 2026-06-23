@@ -1,5 +1,4 @@
-import { db } from "@/db/index";
-import { blogs, playIdeas, playkits, programs } from "@/db/schema";
+import { db, blogs, playIdeas, playkits, programs } from "@/db";
 import { eq } from "drizzle-orm";
 
 export async function getAllBlogs() {

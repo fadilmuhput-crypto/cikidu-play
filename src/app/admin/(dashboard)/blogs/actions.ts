@@ -2,8 +2,7 @@
 
 import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
-import { db } from "@/db/index"
-import { blogs } from "@/db/schema"
+import { db, blogs } from "@/db"
 import { eq } from "drizzle-orm"
 import { createSlug } from "@/lib/utils"
 

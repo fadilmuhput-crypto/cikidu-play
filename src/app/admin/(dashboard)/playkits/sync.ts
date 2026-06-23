@@ -1,8 +1,7 @@
 "use server"
 
 import { revalidatePath } from "next/cache"
-import { db } from "@/db/index"
-import { playkits } from "@/db/schema"
+import { db, playkits } from "@/db"
 import { eq } from "drizzle-orm"
 import playkitsData from "@/data/playkits.json"
 
