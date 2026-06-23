@@ -33,7 +33,7 @@ export default function Footer() {
           <h3 className="font-semibold mb-3 text-sm uppercase tracking-wider">Kontak</h3>
           <div className="flex flex-col gap-2 text-white/80 text-sm">
             <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6281234567890"}`}
+              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "6281931198224"}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
