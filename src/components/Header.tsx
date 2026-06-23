@@ -10,6 +10,8 @@ const navLinks = [
   { href: '/playkits', label: 'Playkit' },
   { href: '/programs', label: 'Program' },
   { href: '/blogs', label: 'Blog' },
+  { href: '/favorites', label: 'Favorit' },
+  { href: '/contact', label: 'Kontak' },
   { href: '/#tentang', label: 'Tentang' },
 ]
 

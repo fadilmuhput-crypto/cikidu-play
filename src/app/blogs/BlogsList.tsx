@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react"
 import Link from "next/link"
 import SafeImage from "@/components/SafeImage"
+import SaveButton from "@/components/SaveButton"
 import type { Blog } from "@/types"
 
 const PER_PAGE = 9
@@ -53,13 +54,16 @@ export default function BlogsList({ blogs }: { blogs: Blog[] }) {
                 href={`/blogs/${blog.slug}`}
                 className="group bg-white rounded-2xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="h-44 bg-gradient-to-br from-primary-light/30 to-secondary-light/30 flex items-center justify-center text-4xl overflow-hidden">
+                <div className="h-44 bg-gradient-to-br from-primary-light/30 to-secondary-light/30 flex items-center justify-center text-4xl overflow-hidden relative">
                   <SafeImage
                     src={blog.image}
                     alt={blog.title}
                     fallback="📝"
                     className="w-full h-full object-cover"
                   />
+                  <div className="absolute top-2 right-2">
+                    <SaveButton type="blog" slug={blog.slug} title={blog.title} />
+                  </div>
                 </div>
                 <div className="p-5">
                   {(blog.category || blog.ageRange) && (

@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { getProgramBySlug, getAllPrograms } from "@/db/queries"
 import JsonLd from "@/components/JsonLd"
 import Breadcrumbs from "@/components/Breadcrumbs"
+import SaveButton from "@/components/SaveButton"
 import WhatsAppButton from "@/components/WhatsAppButton"
 
 export const dynamic = "force-dynamic"
@@ -90,9 +91,12 @@ export default async function ProgramDetailPage({ params }: Props) {
         )}
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
-        {program.title}
-      </h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
+          {program.title}
+        </h1>
+        <SaveButton type="program" slug={program.slug} title={program.title} size="md" />
+      </div>
 
       {program.description && (
         <p className="text-lg text-foreground/70 leading-relaxed mb-8">

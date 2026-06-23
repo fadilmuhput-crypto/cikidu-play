@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import Link from "next/link"
 import type { PlayIdea, Playkit } from "@/types"
 import SafeImage from "@/components/SafeImage"
+import SaveButton from "@/components/SaveButton"
 
 export default function ExplorationsContent({
   playIdeas,
@@ -148,8 +149,11 @@ export default function ExplorationsContent({
                 href={`/explorations/${idea.slug}`}
                 className="block bg-white rounded-2xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow group"
               >
-                <div className="h-40 bg-gradient-to-br from-accent-light/30 to-secondary-light/30 flex items-center justify-center text-4xl overflow-hidden">
+                <div className="h-40 bg-gradient-to-br from-accent-light/30 to-secondary-light/30 flex items-center justify-center text-4xl overflow-hidden relative">
                   <SafeImage src={idea.image} alt={idea.title} fallback="🎯" className="w-full h-full object-cover" />
+                  <div className="absolute top-2 right-2">
+                    <SaveButton type="exploration" slug={idea.slug} title={idea.title} />
+                  </div>
                 </div>
                 <div className="p-5">
                   <div className="flex items-center gap-2 text-xs text-foreground/50 mb-2">

@@ -72,6 +72,15 @@ export const playkits = pgTable("playkits", {
   sortOrder: integer("sort_order").default(0).notNull(),
 });
 
+export const contacts = pgTable("contacts", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email"),
+  phone: text("phone"),
+  message: text("message").notNull(),
+  createdAt: text("created_at").notNull(),
+});
+
 const client = postgres(process.env.DATABASE_URL!, {
   prepare: false,
   connect_timeout: 5,
@@ -79,4 +88,4 @@ const client = postgres(process.env.DATABASE_URL!, {
   max_lifetime: 60,
 });
 
-export const db = drizzle(client, { schema: { blogs, playIdeas, programs, playkits } });
+export const db = drizzle(client, { schema: { blogs, playIdeas, programs, playkits, contacts } });

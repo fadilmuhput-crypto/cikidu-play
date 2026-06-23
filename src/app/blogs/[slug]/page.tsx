@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getBlogBySlug, getAllBlogs, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
 import SafeImage from "@/components/SafeImage"
+import SaveButton from "@/components/SaveButton"
 import JsonLd from "@/components/JsonLd"
 import Breadcrumbs from "@/components/Breadcrumbs"
 
@@ -72,9 +73,12 @@ export default async function BlogDetailPage({ params }: Props) {
         <span>{blog.developmentType}</span>
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
-        {blog.title}
-      </h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
+          {blog.title}
+        </h1>
+        <SaveButton type="blog" slug={blog.slug} title={blog.title} size="md" />
+      </div>
 
       <div className="h-64 md:h-80 rounded-2xl bg-gradient-to-br from-secondary-light/30 to-primary-light/30 flex items-center justify-center text-6xl mb-10 overflow-hidden">
         <SafeImage src={blog.image} alt={blog.title} fallback="📖" className="w-full h-full object-cover" />

@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react"
 import Link from "next/link"
 import type { Program } from "@/types"
+import SaveButton from "@/components/SaveButton"
 
 const TYPE_LABELS: Record<string, string> = {
   ekstrakurikuler: "Ekstrakurikuler",
@@ -86,12 +87,15 @@ export default function ProgramsList({ programs }: { programs: Program[] }) {
               href={`/programs/${p.slug}`}
               className="block bg-white rounded-2xl border border-primary-light/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow group"
             >
-              <div className="h-40 bg-gradient-to-br from-accent-light/30 to-secondary-light/30 flex items-center justify-center text-5xl overflow-hidden">
+              <div className="h-40 bg-gradient-to-br from-accent-light/30 to-secondary-light/30 flex items-center justify-center text-5xl overflow-hidden relative">
                 {p.image ? (
                   <img src={p.image} alt={p.title} className="w-full h-full object-cover" />
                 ) : (
                   <span>{TYPE_EMOJIS[p.type] || "📅"}</span>
                 )}
+                <div className="absolute top-2 right-2">
+                  <SaveButton type="program" slug={p.slug} title={p.title} />
+                </div>
               </div>
               <div className="p-5">
                 <div className="flex items-center gap-2 text-xs text-foreground/50 mb-2">

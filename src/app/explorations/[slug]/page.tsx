@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getPlayIdeaBySlug, getAllPlayIdeas, getAllPlaykits } from "@/db/queries"
 import SafeImage from "@/components/SafeImage"
+import SaveButton from "@/components/SaveButton"
 import JsonLd from "@/components/JsonLd"
 import Breadcrumbs from "@/components/Breadcrumbs"
 
@@ -77,9 +78,12 @@ export default async function PlayIdeaDetailPage({ params }: Props) {
         )}
       </div>
 
-      <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
-        {idea.title}
-      </h1>
+      <div className="flex items-center justify-between gap-4">
+        <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-6">
+          {idea.title}
+        </h1>
+        <SaveButton type="exploration" slug={idea.slug} title={idea.title} size="md" />
+      </div>
 
       <div className="h-64 md:h-80 rounded-2xl bg-gradient-to-br from-accent-light/30 to-secondary-light/30 flex items-center justify-center text-6xl mb-10 overflow-hidden">
         <SafeImage src={idea.image} alt={idea.title} fallback="🎯" className="w-full h-full object-cover" />

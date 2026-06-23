@@ -3,6 +3,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { getPlaykitBySlug, getAllPlaykits, getAllPlayIdeas } from "@/db/queries"
 import WhatsAppButton from "@/components/WhatsAppButton"
+import SaveButton from "@/components/SaveButton"
 import SafeImage from "@/components/SafeImage"
 import JsonLd from "@/components/JsonLd"
 import Breadcrumbs from "@/components/Breadcrumbs"
@@ -86,7 +87,10 @@ export default async function PlaykitDetailPage({ params }: Props) {
             </span>
           </div>
 
-          <h1 className="text-3xl font-bold mb-4">{kit.name}</h1>
+          <div className="flex items-center justify-between gap-4">
+            <h1 className="text-3xl font-bold mb-4">{kit.name}</h1>
+            <SaveButton type="playkit" slug={kit.slug} title={kit.name} size="md" />
+          </div>
           <p className="text-2xl font-bold text-secondary mb-6">{kit.price}</p>
 
           <div className="mb-6">
