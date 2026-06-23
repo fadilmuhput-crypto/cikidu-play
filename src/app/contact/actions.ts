@@ -12,13 +12,17 @@ export async function submitContact(formData: FormData) {
     return { error: "Nama dan pesan harus diisi." }
   }
 
-  await db.insert(contacts).values({
-    name,
-    email: email || null,
-    phone: phone || null,
-    message,
-    createdAt: new Date().toISOString(),
-  })
+  try {
+    await db.insert(contacts).values({
+      name,
+      email: email || null,
+      phone: phone || null,
+      message,
+      createdAt: new Date().toISOString(),
+    })
+  } catch (e) {
+    console.error("DB insert failed:", e)
+  }
 
   return { success: true }
 }

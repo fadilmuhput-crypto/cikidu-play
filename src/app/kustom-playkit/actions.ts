@@ -18,31 +18,32 @@ export async function submitCustomPlaykit(formData: FormData) {
     return { error: "Nama dan nomor WhatsApp harus diisi." }
   }
 
-  const record = await db.insert(customPlaykits).values({
-    name,
-    phone,
-    eventType: eventType || null,
-    eventDate: eventDate || null,
-    childAge: childAge || null,
-    budget: budget || null,
-    notes: notes || null,
-    createdAt: new Date().toISOString(),
-  }).returning({ id: customPlaykits.id })
+  try {
+    await db.insert(customPlaykits).values({
+      name,
+      phone,
+      eventType: eventType || null,
+      eventDate: eventDate || null,
+      childAge: childAge || null,
+      budget: budget || null,
+      notes: notes || null,
+      createdAt: new Date().toISOString(),
+    })
+  } catch (e) {
+    console.error("DB insert failed:", e)
+  }
 
-  const id = record[0].id
   const lines = [
     `Halo! Saya tertarik dengan Custom Playkit.`,
     ``,
     `Nama: ${name}`,
     `No. WA: ${phone}`,
-    eventType ? `Jenis Acara: ${eventType}` : null,
-    eventDate ? `Tanggal Acara: ${eventDate}` : null,
-    childAge ? `Usia Anak: ${childAge}` : null,
-    budget ? `Estimasi Budget: ${budget}` : null,
-    notes ? `Catatan: ${notes}` : null,
-    ``,
-    `(ID: ${id})`,
-  ].filter(Boolean).join("\n")
+    ...(eventType ? [`Jenis Acara: ${eventType}`] : []),
+    ...(eventDate ? [`Tanggal Acara: ${eventDate}`] : []),
+    ...(childAge ? [`Usia Anak: ${childAge}`] : []),
+    ...(budget ? [`Estimasi Budget: ${budget}`] : []),
+    ...(notes ? [`Catatan: ${notes}`] : []),
+  ].join("\n")
 
   const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(lines)}`
   redirect(waUrl)
